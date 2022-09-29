@@ -1,0 +1,38 @@
+[
+    {
+      "id": 1,
+      "sender": "Viitala",
+      "recipient": "Kaskinen",
+      "product": "Tuore",
+      "vehicle": "32"
+    },
+    {
+      "id": 2,
+      "sender": "Pihlava",
+      "recipient": "Turku",
+      "product": "Sahis",
+      "vehicle": "37"
+    },
+    {
+      "id": 3,
+      "sender": "Koski",
+      "recipient": "Mäntyluoto",
+      "product": "Sahis",
+      "vehicle": "34"
+    },
+    {
+      "id": 4,
+      "sender": "Rauma",
+      "recipient": "Mänttä",
+      "product": "Sellu",
+      "vehicle": "31"
+    },
+    {
+      "id": 5,
+      "sender": "Viitala",
+      "recipient": "Rauma",
+      "product": "Hake",
+      "vehicle": "33"
+    }
+    
+  ]
