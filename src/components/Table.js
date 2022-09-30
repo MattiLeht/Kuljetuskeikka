@@ -13,13 +13,17 @@ const Table = () => {
     recipient: "",
     product: "",
     vehicle: "",
+    number: "",
+    mass: "",
   });
   // Editing formdata
   const [editFormData, setEditFormData] = useState({
-    fullName: "",
-    address: "",
-    phoneNumber: "",
-    email: "",
+    sender: "",
+    recipient: "",
+    product: "",
+    vehicle: "",
+    number: "",
+    mass: "",
   });
   // Editing existing data
   const [editLoadId, setEditLoadId] = useState(null);
@@ -57,6 +61,8 @@ const Table = () => {
       recipient: addFormData.recipient,
       product: addFormData.product,
       vehicle: addFormData.vehicle,
+      number: addFormData.number,
+      mass: addFormData.mass,
     };
     // Add new data in loads
     const newLoads = [...loads, newLoad];
@@ -72,6 +78,8 @@ const Table = () => {
       recipient: editFormData.recipient,
       product: editFormData.product,
       vehicle: editFormData.vehicle,
+      number: editFormData.number,
+      mass: editFormData.mass,
     };
     // Constuction for new loads
     const newLoads = [...loads];
@@ -93,6 +101,8 @@ const Table = () => {
       recipient: load.recipient,
       product: load.product,
       vehicle: load.vehicle,
+      number: load.number,
+      mass: load.mass,
     };
     // Set edited form data to form values
     setEditFormData(formValues);
@@ -122,6 +132,8 @@ const Table = () => {
               <th>Vastaanottaja</th>
               <th>Tuote</th>
               <th>Auto</th>
+              <th>Nro</th>
+              <th>kg/m3</th>
               <th>Muokkaus</th>
             </tr>
           </thead>
@@ -176,6 +188,20 @@ const Table = () => {
           name="vehicle"
           required="required"
           placeholder="Auto"
+          onChange={handleAddFormChange}
+        />
+        <input
+          type="text"
+          name="number"
+          required="required"
+          placeholder="Numero"
+          onChange={handleAddFormChange}
+        />
+        <input
+          type="text"
+          name="mass"
+          required="required"
+          placeholder="kg/m3"
           onChange={handleAddFormChange}
         />
         <button type="submit">Add</button>

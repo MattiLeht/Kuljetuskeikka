@@ -19,7 +19,7 @@ function App() {
       </NavItem>
     </Navbar>
     <Table />
-    {/* <Login /> */}
+    <Login />
     </div>
   );
 }

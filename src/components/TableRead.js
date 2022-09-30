@@ -7,6 +7,8 @@ const ReadOnlyRow = ({ load, handleEditClick, handleDeleteClick }) => {
       <td>{load.recipient}</td>
       <td>{load.product}</td>
       <td>{load.vehicle}</td>
+      <td>{load.number}</td>
+      <td>{load.mass}</td>
       <td>
         <button
           type="button"
