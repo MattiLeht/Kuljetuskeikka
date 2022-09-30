@@ -1,18 +1,18 @@
 import React from "react";
 
-const TableEditing = (
+const EditableRow = ({
   editFormData,
   handleEditFormChange,
-  handleCancelClick
-) => {
+  handleCancelClick,
+}) => {
   return (
-    <tr className="adding">
+    <tr>
       <td>
         <input
           type="text"
-          name="sender"
           required="required"
-          placeholder="Muuta Lähettäjä"
+          placeholder="Enter a name..."
+          name="sender"
           value={editFormData.sender}
           onChange={handleEditFormChange}
         ></input>
@@ -20,9 +20,9 @@ const TableEditing = (
       <td>
         <input
           type="text"
-          name="recipient"
           required="required"
-          placeholder="Muuta Vastaanottaja"
+          placeholder="Enter an address..."
+          name="recipient"
           value={editFormData.recipient}
           onChange={handleEditFormChange}
         ></input>
@@ -30,9 +30,9 @@ const TableEditing = (
       <td>
         <input
           type="text"
-          name="product"
           required="required"
-          placeholder="Muuta Tuote"
+          placeholder="Enter a phone number..."
+          name="product"
           value={editFormData.product}
           onChange={handleEditFormChange}
         ></input>
@@ -40,21 +40,21 @@ const TableEditing = (
       <td>
         <input
           type="text"
-          name="vehicle"
           required="required"
-          placeholder="Muuta Auto"
+          placeholder="Enter an email..."
+          name="vehicle"
           value={editFormData.vehicle}
           onChange={handleEditFormChange}
         ></input>
       </td>
       <td>
-        <button type="submit">Tallenna</button>
+        <button type="submit">Save</button>
         <button type="button" onClick={handleCancelClick}>
-          Peruuta
+          Cancel
         </button>
       </td>
     </tr>
   );
 };
 
-export default TableEditing;
+export default EditableRow;

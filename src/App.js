@@ -18,9 +18,8 @@ function App() {
         <DropdownMenu>Valikko</DropdownMenu>
       </NavItem>
     </Navbar>
-    {/* Siiretään table tonne LogIn komponenttiin */}
-    {/* <Table /> */}
-    <Login />
+    <Table />
+    {/* <Login /> */}
     </div>
   );
 }
