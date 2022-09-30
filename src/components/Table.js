@@ -179,7 +179,7 @@ const Table = () => {
         <input
           type="text"
           name="product"
-          required="required"
+         
           placeholder="Tuote"
           onChange={handleAddFormChange}
         />
