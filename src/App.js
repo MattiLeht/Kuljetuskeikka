@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 import { ReactComponent as Hamburger } from './icons/hamburgermenu.svg';
-import Login from "./components/LogIn";
+//import Login from "./components/LogIn";
 
 import DropdownMenu from "./components/Dropdown";
 import Navbar from "./components/Navbar";
