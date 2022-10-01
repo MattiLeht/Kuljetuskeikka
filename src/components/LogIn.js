@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import "../style.css";
+import "./Login.css";
 import Table from "./Table";
 
 function Login() {
