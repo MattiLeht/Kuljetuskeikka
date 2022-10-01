@@ -160,7 +160,7 @@ const Table = () => {
         </table>
       </form>
 
-       <h2>Lisää kuorma</h2>
+       
       <div className="adding_load">
       <form onSubmit={handleAddFormSubmit} >
         <input
