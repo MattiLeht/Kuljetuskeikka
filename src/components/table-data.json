@@ -4,34 +4,44 @@
       "sender": "Viitala",
       "recipient": "Kaskinen",
       "product": "Tuore",
-      "vehicle": "32"
+      "vehicle": "32",
+      "number": "123",
+      "mass": "48680kg"
     },
     {
       "id": 2,
       "sender": "Pihlava",
       "recipient": "Turku",
       "product": "Sahis",
-      "vehicle": "37"
+      "vehicle": "37",
+      "number": "123",
+      "mass": "48680kg"
     },
     {
       "id": 3,
       "sender": "Koski",
       "recipient": "Mäntyluoto",
       "product": "Sahis",
-      "vehicle": "34"
+      "vehicle": "34",
+      "number": "123",
+      "mass": "48680kg"
     },
     {
       "id": 4,
       "sender": "Rauma",
       "recipient": "Mänttä",
       "product": "Sellu",
-      "vehicle": "31"
+      "vehicle": "31",
+      "number": "123",
+      "mass": "48680kg"
     },
     {
       "id": 5,
       "sender": "Viitala",
       "recipient": "Rauma",
       "product": "Hake",
-      "vehicle": "33"
+      "vehicle": "33",
+      "number": "123",
+      "mass": "48680kg"
     }
   ]

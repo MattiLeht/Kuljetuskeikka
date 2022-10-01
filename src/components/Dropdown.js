@@ -1,4 +1,4 @@
-import './Dropdown.css';
+import '../style.css';
 import { ReactComponent as ArrowIcon } from '../icons/email.svg';
 import { ReactComponent as Facebook } from '../icons/facebook.svg';
 import { ReactComponent as Ig } from '../icons/ig.svg';

@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from "react";
 import { nanoid } from "nanoid";
-import "./Table.css";
+import "../style.css";
 import data from "./table-data.json";
 import ReadOnlyRow from "./TableRead";
 import EditableRow from "./TableEditing";
@@ -13,13 +13,17 @@ const Table = () => {
     recipient: "",
     product: "",
     vehicle: "",
+    number: "",
+    mass: "",
   });
   // Editing formdata
   const [editFormData, setEditFormData] = useState({
-    fullName: "",
-    address: "",
-    phoneNumber: "",
-    email: "",
+    sender: "",
+    recipient: "",
+    product: "",
+    vehicle: "",
+    number: "",
+    mass: "",
   });
   // Editing existing data
   const [editLoadId, setEditLoadId] = useState(null);
@@ -57,6 +61,8 @@ const Table = () => {
       recipient: addFormData.recipient,
       product: addFormData.product,
       vehicle: addFormData.vehicle,
+      number: addFormData.number,
+      mass: addFormData.mass,
     };
     // Add new data in loads
     const newLoads = [...loads, newLoad];
@@ -72,6 +78,8 @@ const Table = () => {
       recipient: editFormData.recipient,
       product: editFormData.product,
       vehicle: editFormData.vehicle,
+      number: editFormData.number,
+      mass: editFormData.mass,
     };
     // Constuction for new loads
     const newLoads = [...loads];
@@ -93,6 +101,8 @@ const Table = () => {
       recipient: load.recipient,
       product: load.product,
       vehicle: load.vehicle,
+      number: load.number,
+      mass: load.mass,
     };
     // Set edited form data to form values
     setEditFormData(formValues);
@@ -113,19 +123,21 @@ const Table = () => {
   };
 
   return (
-    <div className="app-container">
-      <form onSubmit={handleEditFormSubmit}>
+    <div >
+      <form className="table-div" onSubmit={handleEditFormSubmit}>
         <table>
-          <thead>
+          <thead className="table-header">
             <tr>
               <th>Lähettäjä</th>
               <th>Vastaanottaja</th>
               <th>Tuote</th>
               <th>Auto</th>
+              <th>Nro</th>
+              <th>kg/m3</th>
               <th>Muokkaus</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="table-body">
             {loads.map((load) => (
               // Adding fragment where happend table editting and reading.
               <Fragment>
@@ -148,8 +160,9 @@ const Table = () => {
         </table>
       </form>
 
-      <h2>Lisää kuorma</h2>
-      <form onSubmit={handleAddFormSubmit}>
+       <h2>Lisää kuorma</h2>
+      <div className="adding_load">
+      <form onSubmit={handleAddFormSubmit} >
         <input
           type="text"
           name="sender"
@@ -167,7 +180,7 @@ const Table = () => {
         <input
           type="text"
           name="product"
-          required="required"
+         
           placeholder="Tuote"
           onChange={handleAddFormChange}
         />
@@ -178,8 +191,23 @@ const Table = () => {
           placeholder="Auto"
           onChange={handleAddFormChange}
         />
+        <input
+          type="text"
+          name="number"
+          required="required"
+          placeholder="Numero"
+          onChange={handleAddFormChange}
+        />
+        <input
+          type="text"
+          name="mass"
+          required="required"
+          placeholder="kg/m3"
+          onChange={handleAddFormChange}
+        />
         <button type="submit">Add</button>
       </form>
+      </div>
     </div>
   );
 };

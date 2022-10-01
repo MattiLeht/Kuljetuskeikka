@@ -6,12 +6,12 @@ const EditableRow = ({
   handleCancelClick,
 }) => {
   return (
-    <tr>
+    <tr className="table-edit">
       <td>
         <input
           type="text"
-          required="required"
-          placeholder="Enter a name..."
+          
+          placeholder="Lähettäjä"
           name="sender"
           value={editFormData.sender}
           onChange={handleEditFormChange}
@@ -20,8 +20,8 @@ const EditableRow = ({
       <td>
         <input
           type="text"
-          required="required"
-          placeholder="Enter an address..."
+          
+          placeholder="Vastaanottaja"
           name="recipient"
           value={editFormData.recipient}
           onChange={handleEditFormChange}
@@ -30,8 +30,8 @@ const EditableRow = ({
       <td>
         <input
           type="text"
-          required="required"
-          placeholder="Enter a phone number..."
+          
+          placeholder="Tuote"
           name="product"
           value={editFormData.product}
           onChange={handleEditFormChange}
@@ -40,10 +40,30 @@ const EditableRow = ({
       <td>
         <input
           type="text"
-          required="required"
-          placeholder="Enter an email..."
+          
+          placeholder="Auto"
           name="vehicle"
           value={editFormData.vehicle}
+          onChange={handleEditFormChange}
+        ></input>
+      </td>
+      <td>
+        <input
+          type="text"
+          
+          placeholder="Kuorman numero"
+          name="number"
+          value={editFormData.number}
+          onChange={handleEditFormChange}
+        ></input>
+      </td>
+      <td>
+        <input
+          type="text"
+          
+          placeholder="kg/m3"
+          name="mass"
+          value={editFormData.mass}
           onChange={handleEditFormChange}
         ></input>
       </td>
