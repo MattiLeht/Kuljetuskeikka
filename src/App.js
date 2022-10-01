@@ -10,8 +10,10 @@ import Table from "./components/Table";
 
 
 
+
 function App() {
   return (
+    <div class="bg_image">
     <div className="main-div">
     <Navbar>
       <NavItem icon={<Hamburger />}>
@@ -20,6 +22,7 @@ function App() {
     </Navbar>
     <Table />
     {/* <Login /> */}
+    </div>
     </div>
   );
 }
