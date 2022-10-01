@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from "react";
 import { nanoid } from "nanoid";
-import "./Table.css";
+import "../style.css";
 import data from "./table-data.json";
 import ReadOnlyRow from "./TableRead";
 import EditableRow from "./TableEditing";
@@ -123,10 +123,10 @@ const Table = () => {
   };
 
   return (
-    <div className="app-container">
-      <form onSubmit={handleEditFormSubmit}>
+    <div >
+      <form className="table-div" onSubmit={handleEditFormSubmit}>
         <table>
-          <thead>
+          <thead className="table-header">
             <tr>
               <th>Lähettäjä</th>
               <th>Vastaanottaja</th>
@@ -137,7 +137,7 @@ const Table = () => {
               <th>Muokkaus</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="table-body">
             {loads.map((load) => (
               // Adding fragment where happend table editting and reading.
               <Fragment>
@@ -160,8 +160,9 @@ const Table = () => {
         </table>
       </form>
 
-      <h2>Lisää kuorma</h2>
-      <form onSubmit={handleAddFormSubmit}>
+      {/* <h2>Lisää kuorma</h2>
+      <div className="adding_load">
+      <form onSubmit={handleAddFormSubmit} >
         <input
           type="text"
           name="sender"
@@ -206,6 +207,7 @@ const Table = () => {
         />
         <button type="submit">Add</button>
       </form>
+      </div> */}
     </div>
   );
 };

@@ -1,8 +1,8 @@
 import React from "react";
-
+import "../style.css"
 const ReadOnlyRow = ({ load, handleEditClick, handleDeleteClick }) => {
   return (
-    <tr>
+    <tr className="table-container">
       <td>{load.sender}</td>
       <td>{load.recipient}</td>
       <td>{load.product}</td>

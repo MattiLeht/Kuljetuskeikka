@@ -2,12 +2,17 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 1rem;
+  
 }
 
 .table {
   border-collapse: collapse;
   width: 100%;
+  display: flex;
+  padding: 15px 25px;
+  width: 800px;
+  max-width: 960px;
+  
 }
 
 th,
@@ -16,14 +21,15 @@ td {
   text-align: left;
   padding: 8px;
   font-size: 32px;
+  
 }
 
 th {
-  background-color: rgb(117, 201, 250);
+  background-color: #457b9d;
 }
 
 td {
-  background-color: rgb(205, 235, 253);
+  background-color: #457b9d;
 }
 
 form {

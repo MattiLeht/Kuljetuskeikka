@@ -12,7 +12,7 @@ import Table from "./components/Table";
 
 function App() {
   return (
-    <div>
+    <div className="main-div">
     <Navbar>
       <NavItem icon={<Hamburger />}>
         <DropdownMenu>Valikko</DropdownMenu>
