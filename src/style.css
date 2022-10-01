@@ -166,9 +166,14 @@ a {
   /*display: flex;*/
 }
 
+.adding_load {
+  margin: 10px;
+  padding: 25px;
+  border: solid 2px black;
+  background-color: #457b9d;
+}
 
-
-/*@media (min-width: 900px){
+@media (min-width: 900px){
   .table-div, .navbar {
       flex-direction: row;
   }
@@ -180,4 +185,4 @@ a {
   .table-div:last-child {
       border-right: none;
     }
-}*/
+}
