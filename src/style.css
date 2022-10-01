@@ -142,9 +142,10 @@ a {
   background-color: #457b9d;
   border-top:5px solid #1d3557;
   color: #b7b7a4;
-  /*margin: auto;*/
-  /*display: flex;*/
+  margin: auto;
+  display: flex;
   overflow-x: auto;
+  /*overflow-y: scroll;*/
   max-width: 100%;
   height: 250px;
   margin: 10px;
