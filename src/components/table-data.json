@@ -43,5 +43,14 @@
       "vehicle": "33",
       "number": "123",
       "mass": "48680kg"
+    },
+    {
+      "id": 6,
+      "sender": "Amsterdam",
+      "recipient": "Tampere",
+      "product": "Drugs and Guns",
+      "vehicle": "69",
+      "number": "666",
+      "mass": "60000kg"
     }
   ]

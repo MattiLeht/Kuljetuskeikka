@@ -13,8 +13,8 @@ import Table from "./components/Table";
 
 function App() {
   return (
-    //<div class="bg_image">
-    <div className="main-div" class="container-fluid">
+    <div class="bg_image">
+    <div className="main-div">
     <Navbar>
       <NavItem icon={<Hamburger />}>
         <DropdownMenu>Valikko</DropdownMenu>
@@ -23,7 +23,7 @@ function App() {
     <Table />
     {/* <Login /> */}
     </div>
-    //</div>
+    </div>
   );
 }
 

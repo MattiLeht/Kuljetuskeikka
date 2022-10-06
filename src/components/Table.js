@@ -1,9 +1,10 @@
 import React, { useState, Fragment } from "react";
 import { nanoid } from "nanoid";
 import "../style.css";
-import data from "./table-data.json";
+import data from "./table-data";
 import ReadOnlyRow from "./TableRead";
 import EditableRow from "./TableEditing";
+import TableJquery from "./TableJquery"
 
 const Table = () => {
   const [loads, setLoads] = useState(data);
@@ -124,9 +125,9 @@ const Table = () => {
   };
 
   return (
-    <div >
-      <form className="table-div" class='container-fluid px-0' onSubmit={handleEditFormSubmit}>
-        <table class="table table-dark">
+    <div class='container-fluid'>
+      <form className="table-div" onSubmit={handleEditFormSubmit}>
+        <table id="tableOne" class="table table-dark table-bordered table-striped table-responsive-stack">
           <thead className="table-header">
             <tr>
               <th scope="col">Lähettäjä</th>
@@ -138,7 +139,7 @@ const Table = () => {
               <th scope="col">Muokkaus</th>
             </tr>
           </thead>
-          <tbody className="table-body" scope="row">
+          <tbody className="table-body">
             {loads.map((load) => (
               // Adding fragment where happend table editting and reading.
               <Fragment>

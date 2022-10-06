@@ -10,7 +10,6 @@ const EditableRow = ({
       <td>
         <input
           type="text"
-          
           placeholder="Lähettäjä"
           name="sender"
           value={editFormData.sender}
@@ -20,7 +19,6 @@ const EditableRow = ({
       <td>
         <input
           type="text"
-          
           placeholder="Vastaanottaja"
           name="recipient"
           value={editFormData.recipient}
@@ -30,7 +28,6 @@ const EditableRow = ({
       <td>
         <input
           type="text"
-          
           placeholder="Tuote"
           name="product"
           value={editFormData.product}
@@ -40,7 +37,6 @@ const EditableRow = ({
       <td>
         <input
           type="text"
-          
           placeholder="Auto"
           name="vehicle"
           value={editFormData.vehicle}
@@ -50,7 +46,6 @@ const EditableRow = ({
       <td>
         <input
           type="text"
-          
           placeholder="Kuorman numero"
           name="number"
           value={editFormData.number}
@@ -60,7 +55,6 @@ const EditableRow = ({
       <td>
         <input
           type="text"
-          
           placeholder="kg/m3"
           name="mass"
           value={editFormData.mass}
