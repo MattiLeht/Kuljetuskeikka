@@ -42,6 +42,7 @@ const Table = () => {
   // Handle edit data
   const handleEditFormChange = (event) => {
     event.preventDefault();
+
     // Target attribute
     const fieldName = event.target.getAttribute("name");
     const fieldValue = event.target.value;
@@ -124,20 +125,20 @@ const Table = () => {
 
   return (
     <div >
-      <form className="table-div" onSubmit={handleEditFormSubmit}>
-        <table>
+      <form className="table-div" class='container-fluid px-0' onSubmit={handleEditFormSubmit}>
+        <table class="table table-dark">
           <thead className="table-header">
             <tr>
-              <th>Lähettäjä</th>
-              <th>Vastaanottaja</th>
-              <th>Tuote</th>
-              <th>Auto</th>
-              <th>Nro</th>
-              <th>kg/m3</th>
-              <th>Muokkaus</th>
+              <th scope="col">Lähettäjä</th>
+              <th scope="col">Vastaanottaja</th>
+              <th scope="col">Tuote</th>
+              <th scope="col">Auto</th>
+              <th scope="col">Nro</th>
+              <th scope="col">kg/m3</th>
+              <th scope="col">Muokkaus</th>
             </tr>
           </thead>
-          <tbody className="table-body">
+          <tbody className="table-body" scope="row">
             {loads.map((load) => (
               // Adding fragment where happend table editting and reading.
               <Fragment>
@@ -161,9 +162,10 @@ const Table = () => {
       </form>
 
        
-      <div className="adding_load">
-      <form onSubmit={handleAddFormSubmit} >
+      <div className="adding_load" class="container-fluid px-0">
+      <form onSubmit={handleAddFormSubmit} className="inputs">
         <input
+          className="field1"
           type="text"
           name="sender"
           required="required"
@@ -171,6 +173,7 @@ const Table = () => {
           onChange={handleAddFormChange}
         />
         <input
+        className="field2"
           type="text"
           name="recipient"
           required="required"
