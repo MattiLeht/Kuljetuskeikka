@@ -23,6 +23,7 @@ $(document).ready(function () {
     $(this).find("th, td").css("flex-basis", rowGrow);
   });
 
+  //show and hide table headers depending on the screen size
   function flexTable() {
     if ($(window).width() < 768) {
       $(".table-responsive-stack").each(function (i) {
@@ -30,7 +31,7 @@ $(document).ready(function () {
         $(this).find("thead").hide();
       });
 
-      // window is less than 768px
+      
     } else {
       $(".table-responsive-stack").each(function (i) {
         $(this).find(".table-responsive-stack-thead").hide();
@@ -46,5 +47,5 @@ $(document).ready(function () {
     flexTable();
   };
 
-  // document ready
+
 });
