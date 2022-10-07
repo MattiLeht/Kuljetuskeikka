@@ -4,7 +4,7 @@ import "../style.css";
 
 const ReadOnlyRow = ({ load, handleEditClick, handleDeleteClick }) => {
   return (
-    <tr className="table-container">
+    <tr className="table-container"type="button" onClick={(event) => handleEditClick(event, load)}>
       <td>{load.sender}</td>
       <td>{load.recipient}</td>
       <td>{load.product}</td>
@@ -12,9 +12,6 @@ const ReadOnlyRow = ({ load, handleEditClick, handleDeleteClick }) => {
       <td>{load.number}</td>
       <td>{load.mass}</td>
       <td>
-        <button type="button" onClick={(event) => handleEditClick(event, load)}>
-          Edit
-        </button>
         <button type="button" onClick={() => handleDeleteClick(load.id)}>
           Delete
         </button>
