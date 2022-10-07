@@ -1,5 +1,7 @@
 import React from "react";
-import "../style.css"
+import "../style.css";
+
+
 const ReadOnlyRow = ({ load, handleEditClick, handleDeleteClick }) => {
   return (
     <tr className="table-container">
@@ -10,10 +12,7 @@ const ReadOnlyRow = ({ load, handleEditClick, handleDeleteClick }) => {
       <td>{load.number}</td>
       <td>{load.mass}</td>
       <td>
-        <button
-          type="button"
-          onClick={(event) => handleEditClick(event, load)}
-        >
+        <button type="button" onClick={(event) => handleEditClick(event, load)}>
           Edit
         </button>
         <button type="button" onClick={() => handleDeleteClick(load.id)}>

@@ -1,9 +1,10 @@
 import React, { useState, Fragment } from "react";
 import { nanoid } from "nanoid";
 import "../style.css";
-import data from "./table-data.json";
+import data from "./table-data";
 import ReadOnlyRow from "./TableRead";
 import EditableRow from "./TableEditing";
+import TableJquery from "./TableJquery"
 
 const Table = () => {
   const [loads, setLoads] = useState(data);
@@ -42,6 +43,7 @@ const Table = () => {
   // Handle edit data
   const handleEditFormChange = (event) => {
     event.preventDefault();
+
     // Target attribute
     const fieldName = event.target.getAttribute("name");
     const fieldValue = event.target.value;
@@ -123,18 +125,18 @@ const Table = () => {
   };
 
   return (
-    <div >
+    <div class='container-fluid'>
       <form className="table-div" onSubmit={handleEditFormSubmit}>
-        <table>
+        <table id="tableOne" class="table table-dark table-bordered table-striped table-responsive-stack">
           <thead className="table-header">
             <tr>
-              <th>Lähettäjä</th>
-              <th>Vastaanottaja</th>
-              <th>Tuote</th>
-              <th>Auto</th>
-              <th>Nro</th>
-              <th>kg/m3</th>
-              <th>Muokkaus</th>
+              <th scope="col">Lähettäjä</th>
+              <th scope="col">Vastaanottaja</th>
+              <th scope="col">Tuote</th>
+              <th scope="col">Auto</th>
+              <th scope="col">Nro</th>
+              <th scope="col">kg/m3</th>
+              <th scope="col">Muokkaus</th>
             </tr>
           </thead>
           <tbody className="table-body">
@@ -160,10 +162,11 @@ const Table = () => {
         </table>
       </form>
 
-       <h2>Lisää kuorma</h2>
-      <div className="adding_load">
-      <form onSubmit={handleAddFormSubmit} >
+       
+      <div className="adding_load" class="container-fluid px-0">
+      <form onSubmit={handleAddFormSubmit} className="inputs">
         <input
+          className="field1"
           type="text"
           name="sender"
           required="required"
@@ -171,6 +174,7 @@ const Table = () => {
           onChange={handleAddFormChange}
         />
         <input
+        className="field2"
           type="text"
           name="recipient"
           required="required"

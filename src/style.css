@@ -1,10 +1,11 @@
 /* Body style */
-body {
+/*body {
   margin: 0;
   background-color: #60a9ff;
   /* display: flex;
-  justify-content: center; */
-}
+  justify-content: center; 
+}*/
+
 table {
   margin: 0;
 
@@ -134,9 +135,9 @@ a {
   transform: translateX(110%);
   transition: step-start;
 }
-/* Table CSS */
 
 
+<<<<<<< HEAD
 
 .table-div {
   background-color: #457b9d;
@@ -188,6 +189,9 @@ a {
       border-right: none;
     }
 }*/
+=======
+/* Background image */
+>>>>>>> Matin
 
 .bg_image{
   background-image: url('components/galleria-slide-1.jpg');
@@ -195,3 +199,48 @@ a {
   height: 100vh;
   color: #f5f5f5;
 }
+
+
+/*Table CSS*/
+
+
+.table-responsive-stack tr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+
+.table-responsive-stack td,
+.table-responsive-stack th {
+   display:block;
+/*      
+   flex-grow | flex-shrink | flex-basis   */
+   -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+}
+
+.table-responsive-stack .table-responsive-stack-thead {
+   font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+   .table-responsive-stack tr {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      border-bottom: 3px solid #ccc;
+      display:block;
+      
+    }
+    /*  IE9 FIX   */
+    .table-responsive-stack td {
+       float: left\9;
+       width:100%;
+    }
+ }
