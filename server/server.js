@@ -35,5 +35,4 @@ const db = mysql.createPool({
       })
 
 
-    //  npm run dev käynnistää console.login
-    // npm install cors body-parser express nodemon mysql
+ 
