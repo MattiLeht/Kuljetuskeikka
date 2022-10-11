@@ -34,5 +34,6 @@ const db = mysql.createPool({
         console.log("running on port 3008");
       })
 
-   
-     
+
+    //  npm run dev käynnistää console.login
+    // npm install cors body-parser express nodemon mysql
