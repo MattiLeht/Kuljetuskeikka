@@ -9,13 +9,16 @@ import TableJquery from "./TableJquery";
 
 
 const Table = () => {
+
+
   const [sender, setSender] = useState("");
   const [recipient, setRecipient] = useState("");
   const [product, setProduct] = useState("");
   const [vehicle, setVehicle] = useState("");
   const [number, setNumber] = useState("");
   const [mass, setMass] = useState("");
-
+  
+  const submitLoads = () => {
   axios
     .post("http://localhost:3008/api/insert/", {
       sender: sender,
@@ -28,6 +31,7 @@ const Table = () => {
     .then(() => {
       alert("successful insert");
     });
+  }
   const [loads, setLoads] = useState(data);
   // Adding new data
   const [addFormData, setAddFormData] = useState({
@@ -83,6 +87,7 @@ const Table = () => {
     // Created new load construction
     const newLoad = {
       id: nanoid(),
+      
       sender: addFormData.sender,
       recipient: addFormData.recipient,
       product: addFormData.product,
@@ -243,7 +248,7 @@ const Table = () => {
               setMass(e.target.value);
             }}
           />
-          <button type="submit">Add</button>
+          <button onClick={submitLoads}>Add</button>
         </form>
       </div>
     </div>

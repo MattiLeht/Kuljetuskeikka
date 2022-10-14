@@ -15,8 +15,16 @@ const db = mysql.createPool({
     app.use(cors());
     app.use(express.json())
     app.use(bodyParser.urlencoded({extended: true}));
-    app.post("/api/insert/", (req,res)=> {
 
+    app.get("/api/get", (req,res) => {
+      const sqlSelect = "SELECT * FROM loads";
+      db.query(sqlSelect, (err, result)=> {
+        console.log(result);
+      });
+    });
+    
+
+    app.post("/api/insert/", (req,res)=> {
     const sender = req.body.sender;
     const recipient = req.body.recipient;
     const product = req.body.product;
@@ -26,7 +34,7 @@ const db = mysql.createPool({
 
     const sqlInsert = "INSERT INTO loads (sender, recipient, product, vehicle, number, mass) VALUES (?,?,?,?,?,?)"
     db.query(sqlInsert, [sender, recipient, product, vehicle, number, mass], (err, result)=> {
-        console.log(err);
+        console.log(result);
       });
     });
 
@@ -35,4 +43,7 @@ const db = mysql.createPool({
       })
 
 
- 
+    //  npm run dev käynnistää console.login
+    // npm install cors body-parser express nodemon mysql
+
+  
