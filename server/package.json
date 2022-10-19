@@ -1,8 +1,8 @@
 {
-  "name": "back-end",
+  "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "keskimaki.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server",
     "dev": "nodemon server.js",

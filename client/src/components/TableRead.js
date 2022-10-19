@@ -1,19 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../style.css";
+import axios from "axios";
 
 
-const ReadOnlyRow = ({ load, handleEditClick, handleDeleteClick }) => {
+const ReadOnlyRow = ({handleEditClick, handleDeleteClick }) => {
+ const [loadList, setLoadList] = useState([])
+  useEffect (() =>{
+    axios.get("http://localhost:3008/api/get/").then((response) => {
+      setLoadList(response.data);
+    });
+  }, []);
+ 
+  {loadList.map((val)=> {
   return (
-    <tr className="table-container"type="button" onClick={(event) => handleEditClick(event, load)}>
-      <td>{load.sender}</td>
-      <td>{load.recipient}</td>
-      <td>{load.product}</td>
-      <td>{load.vehicle}</td>
-      <td>{load.number}</td>
-      <td>{load.mass}</td>
-      
+    <tr className="table-container"type="button" onClick={(event) => handleEditClick(event, val)}>
+      <td>{val.sender}</td>
+      <td>{val.recipient}</td>
+      <td>{val.product}</td>
+      <td>{val.vehicle}</td>
+      <td>{val.number}</td>
+      <td>{val.mass}</td>
+      <td>
+        <button type="button" onClick={() => handleDeleteClick(val.id)}>
+          Delete
+        </button>
+      </td>
     </tr>
+    
   );
+})}
 };
 
 export default ReadOnlyRow;

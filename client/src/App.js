@@ -6,7 +6,7 @@ import { ReactComponent as Hamburger } from './icons/hamburgermenu.svg';
 import DropdownMenu from "./components/Dropdown";
 import Navbar from "./components/Navbar";
 import NavItem from "./components/NavItem";
-import Table from "./components/Table";
+import Tablejs from "./components/Table";
 
 
 
@@ -20,7 +20,7 @@ function App() {
         <DropdownMenu>Valikko</DropdownMenu>
       </NavItem>
     </Navbar>
-    <Table />
+    <Tablejs />
     {/* <Login /> */}
     </div>
     </div>
