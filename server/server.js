@@ -37,6 +37,8 @@ const db = mysql.createPool({
       });
     });
 
+    const sqlCreate = "CREATE "
+
   //   app.put("/api/update", (req, res) =>{
   //     const sender = req.body.sender;
   //   const recipient = req.body.recipient;
@@ -66,7 +68,7 @@ const db = mysql.createPool({
         console.log("running on port 3008");
       })
 
-      // npm init
+    // npm init
     //  npm run dev käynnistää console.login
     // npm install cors body-parser express nodemon mysql
 

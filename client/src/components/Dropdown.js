@@ -48,7 +48,7 @@ function DropdownMenu() {
           <DropdownItem
            leftIcon={<ArrowIcon />}
             goToMenu="settings">
-            Social Media
+            Taulukot
           </DropdownItem>
           <DropdownItem
             leftIcon={<ArrowIcon />}
@@ -66,13 +66,12 @@ function DropdownMenu() {
         onEnter={calcHeight}>
         <div className="menu">
           <DropdownItem goToMenu="main" leftIcon={<ArrowIcon />}>
-            <h3>Social Media</h3>
+            <h3>Taulukot</h3>
           </DropdownItem>
-          <DropdownItem leftIcon={<Facebook/>}>Facebook</DropdownItem>
-          <DropdownItem leftIcon={<Ig />}>Instagram</DropdownItem>
-          <DropdownItem leftIcon={<Linkedin/>}>Linkedin</DropdownItem>
-          <DropdownItem leftIcon={<Wap />}>Whatsapp</DropdownItem>
-          <DropdownItem leftIcon={<Twitter />}>Twitter</DropdownItem>
+          <DropdownItem tag={"./Login"} leftIcon={<Facebook/>}>Tulevat</DropdownItem>
+          <DropdownItem leftIcon={<Ig />}>Ajossa</DropdownItem>
+          <DropdownItem leftIcon={<Linkedin/>}>Ajetut</DropdownItem>
+
         </div>
       </CSSTransition>
 
