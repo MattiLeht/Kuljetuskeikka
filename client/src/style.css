@@ -169,13 +169,21 @@ a {
 }
 .inputs {
   border: 1px solid #b7b7a4;
+  border-bottom-left-radius:8px ;
+  border-bottom-right-radius: 8px;
 }
 
+input {
+  
+  width: 100%;
+
+}
 .table-responsive-stack td,
 .table-responsive-stack th {
    display:flex;
    width: 100%;
-   border: 1px solid #b7b7a4;
+   border-left: 1px solid #b7b7a4;
+   border-bottom: 1px solid #b7b7a4;
    background-color: #1d3557;
    justify-content: center;
    text-align: center;
