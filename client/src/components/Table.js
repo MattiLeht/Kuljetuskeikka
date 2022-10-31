@@ -95,13 +95,7 @@ const Table = () => {
                       <td>{val.mass}</td>
               
    
-                        <button 
-                          onClick={() => {
-                            updateLoads(val.id);
-                          }}
-                        >
-                          Muokkaa
-                        </button>
+                        
                       
                       <button
 
@@ -216,6 +210,13 @@ const Table = () => {
                             setMass(e.target.value);
                           }}
                         />
+                        <button 
+                          onClick={() => {
+                            updateLoads(val.id);
+                          }}
+                        >
+                          Muokkaa
+                        </button>
                         </tr>
                         );
                       })}

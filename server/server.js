@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // Get data in database
 app.get("/api/get", (req, res) => {
-  const sqlSelect = "SELECT * FROM loads1";
+  const sqlSelect = "SELECT * FROM loads";
   db.query(sqlSelect, (err, result) => {
     res.send(result);
   });
@@ -32,7 +32,7 @@ app.post("/api/insert/", (req, res) => {
   const mass = req.body.mass;
 
   const sqlInsert =
-    "INSERT INTO loads1 (sender, recipient, product, vehicle, number, mass) VALUES (?,?,?,?,?,?)";
+    "INSERT INTO loads (sender, recipient, product, vehicle, number, mass) VALUES (?,?,?,?,?,?)";
   db.query(
     sqlInsert,
     [sender, recipient, product, vehicle, number, mass],
@@ -51,7 +51,7 @@ app.put("/api/update", (req, res) => {
   const number = req.body.number;
   const mass = req.body.mass;
   const sqlUpdate =
-    "UPDATE loads1 SET sender = ?, recipient = ?, product = ?, vehicle = ?, number = ?, mass = ? WHERE id = ?";
+    "UPDATE loads SET sender = ?, recipient = ?, product = ?, vehicle = ?, number = ?, mass = ? WHERE id = ?";
 
   db.query(
     sqlUpdate,
