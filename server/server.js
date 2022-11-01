@@ -43,16 +43,18 @@ app.post("/api/insert/", (req, res) => {
 });
 
 app.put("/api/update", (req, res) => {
-  const sender = req.body.sender;
+
   const id = req.body.id;
+  const sender = req.body.sender;
   const recipient = req.body.recipient;
   const product = req.body.product;
   const vehicle = req.body.vehicle;
   const number = req.body.number;
   const mass = req.body.mass;
-  const sqlUpdate =
-    "UPDATE loads SET sender = ?, recipient = ?, product = ?, vehicle = ?, number = ?, mass = ? WHERE id = ?";
 
+  const sqlUpdate =
+    "UPDATE loads SET sender = ?, recipient = ?, product = ?, vehicle = ?, number = ?, mass = ? WHERE id = ? ";
+    if (req)
   db.query(
     sqlUpdate,
     [ sender, recipient, product, vehicle, number, mass, id],
@@ -66,7 +68,7 @@ app.put("/api/update", (req, res) => {
 app.delete("/api/delete/:sender", (req, res) => {
   const sender = req.params.sender;
 
-  const sqlDelete = "DELETE FROM loads1 WHERE sender = ?";
+  const sqlDelete = "DELETE FROM loads WHERE sender = ?";
   db.query(sqlDelete, sender, (err, result) => {
     if (err) console.log(err);
   });

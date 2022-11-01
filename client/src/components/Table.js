@@ -35,12 +35,18 @@ const Table = () => {
         alert("successful insert");
       });
   };
-  
+
+  const [updateLoadId, SetUpdateId] = useState(null);
+
+  const handleChange = (event) => {
+    loadList(event.target.value);
+  };
+
   const updateLoads = (id) => {
     axios
-    // Säädetty
+      // Säädetty
       .put("http://localhost:3008/api/update/", {
-        sender:sender,
+        sender: sender,
         recipient: recipient,
         product: product,
         vehicle: vehicle,
@@ -51,12 +57,13 @@ const Table = () => {
       .then((response) => {
         alert("update");
       });
-      
   };
-   const handleChange = event => {
-    loadList(event.target.value);
-   };
-  
+
+  // const handleEditClick = (event, val) => {
+  //   event.preventDeafult();
+  //   SetUpdateId(val.id);
+  // };
+
   const deleteLoad = (kuorma) => {
     axios.delete(`http://localhost:3008/api/delete/${kuorma}`);
   };
@@ -79,42 +86,121 @@ const Table = () => {
             </tr>
           </thead>
           <tbody className="table-body">
-            
             <div className="adding_load" class="container-fluid px-0">
               <form className="inputs">
                 {loadList.map((val) => {
-                  
                   return (
-                    <tr className="table-container" 
-                    >
-                      <td>{val.sender}</td>
-                      <td>{val.recipient}</td>
-                      <td>{val.product}</td>
-                      <td>{val.vehicle}</td>
-                      <td>{val.number}</td>
-                      <td>{val.mass}</td>
-              
-   
-                        
-                      
-                      <button
+                    <>
+                    <tr
+                          className="table-container"
+                          val={val}
+                          // handleEditClick={handleEditClick}
+                        >
+                          <td>{val.sender}</td>
 
-                        onClick={() => {
-                          deleteLoad(val.sender);
-                        }}
-                      >
-                        Poista
-                      </button>
-                    </tr>
+                          <td>{val.recipient}</td>
+
+                          <td>{val.product}</td>
+
+                          <td>{val.vehicle}</td>
+
+                          <td>{val.number}</td>
+
+                          <td>{val.mass}</td>
+                          <button
+                            onClick={(event) => {
+                              // handleEditClick(event,val);
+                              updateLoads(val.id)
+                            }}
+                          >
+                            Muokkaa
+                          </button>
+                          <button
+                            onClick={() => {
+                              deleteLoad(val.sender);
+                            }}
+                          >
+                            Poista
+                          </button>
+                        </tr>
+                      {/* {updateLoadId === val.id ? ( */}
+                        <tr className="edit-table">
+                          <td>
+                            <input
+                              type="text"
+                              placeholder="Lähettajä"
+                              name="sender"
+                              onChange={(e) => {
+                                setSender(e.target.value);
+                              }}
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              placeholder="Vastaanottaja"
+                              name="recipient"
+                              onChange={(e) => {
+                                setRecipient(e.target.value);
+                              }}
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              placeholder="Tuote"
+                              name="product"
+                              onChange={(e) => {
+                                setProduct(e.target.value);
+                              }}
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              placeholder="Auto"
+                              name="vehicle"
+                              onChange={(e) => {
+                                setVehicle(e.target.value);
+                              }}
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              placeholder="Numero"
+                              name="number"
+                              onChange={(e) => {
+                                setNumber(e.target.value);
+                              }}
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              placeholder="Massa"
+                              name="mass"
+                              onChange={(e) => {
+                                setMass(e.target.value);
+                              }}
+                            />
+                          </td>
+                        </tr>
+                       {/* ) : ( */}
+                        
+                      {/* ) */}
+                {/* } */}
+                    </>
                   );
                 })}
-                
-                <tr className="addin-loads" >
+              </form>
+              <table>
+                <tr className="addin-loads">
                   <input
                     className="field1"
                     type="text"
                     name="sender"
-                    // required="required"
+                    required="required"
                     placeholder="Lahettaja"
                     onChange={(e) => {
                       setSender(e.target.value);
@@ -164,63 +250,7 @@ const Table = () => {
                   />
                   <button onClick={submitLoads}>Lisää</button>
                 </tr>
-                {loadList.map((val) => {
-                  return (
-                <tr>
-                  <input
-                          type="text"
-                          placeholder="Lähettajä"
-                          
-                          onChange={(e) => {
-                            setSender(e.target.value);
-                          }}
-                        />
-                        <input
-                          type="text"
-                          placeholder="Vastaanottaja"
-                          onChange={(e) => {
-                            setRecipient(e.target.value);
-                          }}
-                        />
-                        <input
-                          type="text"
-                          placeholder="Tuote"
-                          onChange={(e) => {
-                            setProduct(e.target.value);
-                          }}
-                        />
-                        <input
-                          type="text"
-                          placeholder="Auto"
-                          onChange={(e) => {
-                            setVehicle(e.target.value);
-                          }}
-                        />
-                        <input
-                          type="text"
-                          placeholder="Numero"
-                          onChange={(e) => {
-                            setNumber(e.target.value);
-                          }}
-                        />
-                        <input
-                          type="text"
-                          placeholder="Massa"
-                          onChange={(e) => {
-                            setMass(e.target.value);
-                          }}
-                        />
-                        <button 
-                          onClick={() => {
-                            updateLoads(val.id);
-                          }}
-                        >
-                          Muokkaa
-                        </button>
-                        </tr>
-                        );
-                      })}
-              </form>
+              </table>
             </div>
           </tbody>
         </table>
