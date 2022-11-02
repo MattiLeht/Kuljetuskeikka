@@ -36,19 +36,37 @@ const Table = () => {
       });
   };
 
-  // const updateLoads = () =>
-  // axios.put("http://localhost:3008/api/update/", {
-  //   sender: sender,
-  //   recipient: recipient,
-  //   product: product,
-  //   vehicle: vehicle,
-  //   number: number,
-  //   mass: mass,
-  // })
+  const [updateLoadId, SetUpdateId] = useState(null);
+
+  const handleChange = (event) => {
+    loadList(event.target.value);
+  };
+
+  const updateLoads = (id) => {
+    axios
+      // Säädetty
+      .put("http://localhost:3008/api/update/", {
+        sender: sender,
+        recipient: recipient,
+        product: product,
+        vehicle: vehicle,
+        number: number,
+        mass: mass,
+        id: id,
+      })
+      .then((response) => {
+        alert("update");
+      });
+  };
+
+  // const handleEditClick = (event, val) => {
+  //   event.preventDeafult();
+  //   SetUpdateId(val.id);
+  // };
 
   const deleteLoad = (kuorma) => {
     axios.delete(`http://localhost:3008/api/delete/${kuorma}`);
-  }
+  };
 
   return (
     <div class="container-fluid">
@@ -71,7 +89,7 @@ const Table = () => {
           <tbody className="table-body">
             {loadList.map((val) => {
               return (
-                <tr className="table-container" val={val}>
+                <tr className="table-container">
                   <td>{val.sender}</td>
 
                   <td>{val.recipient}</td>
@@ -86,24 +104,15 @@ const Table = () => {
                   <td>
                     <button
                       onClick={() => {
-                        deleteLoad(val.sender);
+                        deleteLoad(val.id);
                       }}
                     >
                       Poista
                     </button>
-                    <button
-                      onClick={(event) => {
-                        updateLoads(val.id);
-                      }}
-                    >
-                      Muokkaus
-                    </button>
-                    {/* <button onClick={updateLoads}>Muokkaa</button> */}
                   </td>
                 </tr>
               );
             })}
-            {/* </div> */}
           </tbody>
           <tfoot>
             <div
@@ -128,7 +137,7 @@ const Table = () => {
                   required="required"
                   placeholder="Vastaanottaja"
                   onChange={(e) => {
-                    setRecipient(e.target.value);
+                    setSender(e.target.value);
                   }}
                 />
                 <input
@@ -165,20 +174,6 @@ const Table = () => {
                 />
                 <button onClick={submitLoads}>Lisää</button>
               </form>
-              {loadList.map((val) => {
-                return (
-                  <tr className="table-container">
-                    <td>{val.sender}</td>
-                    <td>{val.recipient}</td>
-                    <td>{val.product}</td>
-                    <td>{val.vehicle}</td>
-                    <td>{val.number}</td>
-                    <td>{val.mass}</td>
-                    <button onClick={()=> {deleteLoad(val.sender)}}>Poista</button>
-                    {/* <button onClick={updateLoads}>Muokkaa</button> Ei toimi vielä */}
-                  </tr>
-                );
-              })}
             </div>
           </tfoot>
         </table>

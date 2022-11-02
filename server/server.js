@@ -52,15 +52,15 @@ const db = mysql.createPool({
   //  });
 
 
-    // Delete row in table
-    app.delete("/api/delete/:sender", (req, res) => {
-      const sender = req.params.sender;
-      
-      const sqlDelete = "DELETE FROM loads WHERE sender = ?";
-      db.query(sqlDelete, sender, (err,result) => {
-       if (err) console.log(err);
-      });
-    });
+// Delete row in table
+app.delete("/api/delete/:sender", (req, res) => {
+  const sender = req.params.sender;
+
+  const sqlDelete = "DELETE FROM loads WHERE sender = ?";
+  db.query(sqlDelete, sender, (err, result) => {
+    if (err) console.log(err);
+  });
+});
 
     app.listen(3008, () => {
         console.log("running on port 3008");
