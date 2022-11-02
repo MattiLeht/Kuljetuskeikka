@@ -1,6 +1,7 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "../style.css";
 import axios from "axios";
+// import { useState } from 'react'
 // import "./Table.css"
 import TableJquery from "./TableJquery";
 
@@ -13,6 +14,7 @@ const Table = () => {
   const [mass, setMass] = useState("");
 
   const [loadList, setLoadList] = useState([]);
+
   useEffect(() => {
     axios.get("http://localhost:3008/api/get/").then((response) => {
       setLoadList(response.data);
@@ -34,26 +36,44 @@ const Table = () => {
       });
   };
 
-  // const updateLoads = () =>
-  // axios.put("http://localhost:3008/api/update/", {
-  //   sender: sender,
-  //   recipient: recipient,
-  //   product: product,
-  //   vehicle: vehicle,
-  //   number: number,
-  //   mass: mass,
-  // })
+  const [updateLoadId, SetUpdateId] = useState(null);
+
+  const handleChange = (event) => {
+    loadList(event.target.value);
+  };
+
+  const updateLoads = (id) => {
+    axios
+      // Säädetty
+      .put("http://localhost:3008/api/update/", {
+        sender: sender,
+        recipient: recipient,
+        product: product,
+        vehicle: vehicle,
+        number: number,
+        mass: mass,
+        id: id,
+      })
+      .then((response) => {
+        alert("update");
+      });
+  };
+
+  // const handleEditClick = (event, val) => {
+  //   event.preventDeafult();
+  //   SetUpdateId(val.id);
+  // };
 
   const deleteLoad = (kuorma) => {
     axios.delete(`http://localhost:3008/api/delete/${kuorma}`);
-  }
+  };
 
   return (
     <div class="container-fluid">
       <form className="table-div">
         <table
           id="tableOne"
-          class="table table-dark table-bordered table-striped table-responsive-stack"
+          class="table table-light table-bordered table-striped table-responsive-stack"
         >
           <thead className="table-header">
             <tr>
@@ -63,10 +83,51 @@ const Table = () => {
               <th scope="col">Auto</th>
               <th scope="col">Nro</th>
               <th scope="col">kg/m3</th>
+              <th scope="col">Edit</th>
             </tr>
           </thead>
           <tbody className="table-body">
-            <div className="adding_load" class="container-fluid px-0">
+            {loadList.map((val) => {
+              return (
+                <tr className="table-container" val={val}>
+                  <td>{val.sender}</td>
+
+                  <td>{val.recipient}</td>
+
+                  <td>{val.product}</td>
+
+                  <td>{val.vehicle}</td>
+
+                  <td>{val.number}</td>
+
+                  <td>{val.mass}</td>
+                  <td>
+                    <button
+                      onClick={() => {
+                        deleteLoad(val.sender);
+                      }}
+                    >
+                      Poista
+                    </button>
+                    <button
+                      onClick={(event) => {
+                        updateLoads(val.id);
+                      }}
+                    >
+                      Muokkaus
+                    </button>
+                    {/* <button onClick={updateLoads}>Muokkaa</button> */}
+                  </td>
+                </tr>
+              );
+            })}
+            {/* </div> */}
+          </tbody>
+          <tfoot>
+            <div
+              className="adding_load"
+              class="table-light container-fluid px-0"
+            >
               <form className="inputs">
                 <input
                   className="field1"
@@ -85,7 +146,7 @@ const Table = () => {
                   required="required"
                   placeholder="Vastaanottaja"
                   onChange={(e) => {
-                    setRecipient(e.target.value);
+                    setSender(e.target.value);
                   }}
                 />
                 <input
@@ -122,22 +183,8 @@ const Table = () => {
                 />
                 <button onClick={submitLoads}>Lisää</button>
               </form>
-              {loadList.map((val) => {
-                return (
-                  <tr className="table-container">
-                    <td>{val.sender}</td>
-                    <td>{val.recipient}</td>
-                    <td>{val.product}</td>
-                    <td>{val.vehicle}</td>
-                    <td>{val.number}</td>
-                    <td>{val.mass}</td>
-                    <button onClick={()=> {deleteLoad(val.sender)}}>Poista</button>
-                    {/* <button onClick={updateLoads}>Muokkaa</button> Ei toimi vielä */}
-                  </tr>
-                );
-              })}
             </div>
-          </tbody>
+          </tfoot>
         </table>
       </form>
     </div>
