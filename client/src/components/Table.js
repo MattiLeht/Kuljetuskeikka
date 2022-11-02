@@ -42,8 +42,8 @@ const Table = () => {
     loadList(event.target.value);
   };
 
-  const deleteLoad = (kuorma) => {
-    axios.delete(`http://localhost:3008/api/delete/${kuorma}`);
+  const deleteLoad = (id) => {
+    axios.delete(`http://localhost:3008/api/delete/${id}`);
   };
 
   return (
@@ -82,7 +82,7 @@ const Table = () => {
                   <td>
                     <button
                       onClick={() => {
-                        deleteLoad(val.sender);
+                        deleteLoad(val.id);
                       }}
                     >
                       Poista
@@ -92,70 +92,65 @@ const Table = () => {
               );
             })}
           </tbody>
-          <tfoot
-            className="adding_load"
-            class="table-light container-fluid px-0"
-          >
-            <div>
-              <form className="inputs">
-                <input
-                  className="field1"
-                  type="text"
-                  name="sender"
-                  required="required"
-                  placeholder="Lahettaja"
-                  onChange={(e) => {
-                    setSender(e.target.value);
-                  }}
-                />
-                <input
-                  className="field2"
-                  type="text"
-                  name="recipient"
-                  required="required"
-                  placeholder="Vastaanottaja"
-                  onChange={(e) => {
-                    setSender(e.target.value);
-                  }}
-                />
-                <input
-                  type="text"
-                  name="product"
-                  placeholder="Tuote"
-                  onChange={(e) => {
-                    setProduct(e.target.value);
-                  }}
-                />
-                <input
-                  type="text"
-                  name="vehicle"
-                  placeholder="Auto"
-                  onChange={(e) => {
-                    setVehicle(e.target.value);
-                  }}
-                />
-                <input
-                  type="text"
-                  name="number"
-                  placeholder="Numero"
-                  onChange={(e) => {
-                    setNumber(e.target.value);
-                  }}
-                />
-                <input
-                  type="text"
-                  name="mass"
-                  placeholder="kg/m3"
-                  onChange={(e) => {
-                    setMass(e.target.value);
-                  }}
-                />
-                <button onClick={submitLoads}>Lisää</button>
-              </form>
-            </div>
-          </tfoot>
         </table>
       </form>
+      <div className="adding_load" class="table-light container-fluid px-0">
+        <form className="inputs">
+          <input
+            className="field1"
+            type="text"
+            name="sender"
+            required="required"
+            placeholder="Lahettaja"
+            onChange={(e) => {
+              setSender(e.target.value);
+            }}
+          />
+          <input
+            className="field2"
+            type="text"
+            name="recipient"
+            required="required"
+            placeholder="Vastaanottaja"
+            onChange={(e) => {
+              setRecipient(e.target.value);
+            }}
+          />
+          <input
+            type="text"
+            name="product"
+            placeholder="Tuote"
+            onChange={(e) => {
+              setProduct(e.target.value);
+            }}
+          />
+          <input
+            type="text"
+            name="vehicle"
+            placeholder="Auto"
+            onChange={(e) => {
+              setVehicle(e.target.value);
+            }}
+          />
+          <input
+            type="text"
+            name="number"
+            placeholder="Numero"
+            onChange={(e) => {
+              setNumber(e.target.value);
+            }}
+          />
+          <input
+            type="text"
+            name="mass"
+            placeholder="kg/m3"
+            onChange={(e) => {
+              setMass(e.target.value);
+            }}
+          />
+          <button onClick={submitLoads}>Lisää</button>
+        </form>
+      </div>
     </div>
   );
 };

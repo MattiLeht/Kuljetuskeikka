@@ -1,23 +1,21 @@
-import '../style.css';
-import { ReactComponent as ArrowIcon } from '../icons/email.svg';
-import { ReactComponent as Facebook } from '../icons/facebook.svg';
-import { ReactComponent as Ig } from '../icons/ig.svg';
-import { ReactComponent as Linkedin } from '../icons/linkedin.svg';
-import { ReactComponent as Wap } from '../icons/wap.svg';
-import { ReactComponent as Twitter } from '../icons/twitter.svg';
-import React, { useState, useEffect, useRef } from 'react';
-import { CSSTransition } from 'react-transition-group';
-
-
+import "../style.css";
+import { ReactComponent as ArrowIcon } from "../icons/email.svg";
+import { ReactComponent as Facebook } from "../icons/facebook.svg";
+import { ReactComponent as Ig } from "../icons/ig.svg";
+import { ReactComponent as Linkedin } from "../icons/linkedin.svg";
+import { ReactComponent as Wap } from "../icons/wap.svg";
+import { ReactComponent as Twitter } from "../icons/twitter.svg";
+import React, { useState, useEffect, useRef } from "react";
+import { CSSTransition } from "react-transition-group";
 
 function DropdownMenu() {
-  const [activeMenu, setActiveMenu] = useState('main');
+  const [activeMenu, setActiveMenu] = useState("main");
   const [menuHeight, setMenuHeight] = useState(null);
   const dropdownRef = useRef(null);
 
   useEffect(() => {
-    setMenuHeight(dropdownRef.current.firstChild.offsetHeight)
-  }, [])
+    setMenuHeight(dropdownRef.current.firstChild.offsetHeight);
+  }, []);
 
   function calcHeight(el) {
     const height = el.offsetHeight;
@@ -26,7 +24,11 @@ function DropdownMenu() {
 
   function DropdownItem(props) {
     return (
-      <a href="#" className="menu-item" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
+      <a
+        href="#"
+        className="menu-item"
+        onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}
+      >
         <span className="icon-button">{props.leftIcon}</span>
         {props.children}
         <span className="icon-right">{props.rightIcon}</span>
@@ -36,51 +38,47 @@ function DropdownMenu() {
 
   return (
     <div className="dropdown" style={{ height: menuHeight }} ref={dropdownRef}>
-
       <CSSTransition
-        in={activeMenu === 'main'}
+        in={activeMenu === "main"}
         timeout={500}
         classNames="menu-primary"
         unmountOnExit
-        onEnter={calcHeight}>
+        onEnter={calcHeight}
+      >
         <div className="menu">
-          
-          <DropdownItem
-           leftIcon={<ArrowIcon />}
-            goToMenu="settings">
+          <DropdownItem leftIcon={<ArrowIcon />} goToMenu="settings">
             Social Media
           </DropdownItem>
-          <DropdownItem
-            leftIcon={<ArrowIcon />}
-            goToMenu="numbers">
+          <DropdownItem leftIcon={<ArrowIcon />} goToMenu="numbers">
             Numbers
           </DropdownItem>
-
         </div>
       </CSSTransition>
 
       <CSSTransition
-        in={activeMenu === 'settings'}
+        in={activeMenu === "settings"}
         classNames="menu-secondary"
         unmountOnExit
-        onEnter={calcHeight}>
+        onEnter={calcHeight}
+      >
         <div className="menu">
           <DropdownItem goToMenu="main" leftIcon={<ArrowIcon />}>
             <h3>Social Media</h3>
           </DropdownItem>
-          <DropdownItem leftIcon={<Facebook/>}>Facebook</DropdownItem>
+          <DropdownItem leftIcon={<Facebook />}>Facebook</DropdownItem>
           <DropdownItem leftIcon={<Ig />}>Instagram</DropdownItem>
-          <DropdownItem leftIcon={<Linkedin/>}>Linkedin</DropdownItem>
+          <DropdownItem leftIcon={<Linkedin />}>Linkedin</DropdownItem>
           <DropdownItem leftIcon={<Wap />}>Whatsapp</DropdownItem>
           <DropdownItem leftIcon={<Twitter />}>Twitter</DropdownItem>
         </div>
       </CSSTransition>
 
       <CSSTransition
-        in={activeMenu === 'numbers'}
+        in={activeMenu === "numbers"}
         classNames="menu-secondary"
         unmountOnExit
-        onEnter={calcHeight}>
+        onEnter={calcHeight}
+      >
         <div className="menu">
           <DropdownItem goToMenu="main" leftIcon={<ArrowIcon />}>
             <h3>Numbers</h3>
@@ -95,4 +93,4 @@ function DropdownMenu() {
   );
 }
 
-export default DropdownMenu
+export default DropdownMenu;

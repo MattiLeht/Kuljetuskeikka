@@ -64,12 +64,14 @@ app.put("/api/update", (req, res) => {
 });
 
 // Delete row in table
-app.delete("/api/delete/:sender", (req, res) => {
-  const sender = req.params.sender;
-
-  const sqlDelete = "DELETE FROM loads WHERE sender = ?";
-  db.query(sqlDelete, sender, (err, result) => {
-    if (err) console.log(err);
+// Delete row in table
+app.delete("/api/delete/:id", (req, res) => {
+  const id = req.params.id;
+  db.query("DELETE FROM loads WHERE id = ?", id, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.send(result);
+    }
   });
 });
 
