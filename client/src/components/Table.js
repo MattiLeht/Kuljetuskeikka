@@ -42,28 +42,6 @@ const Table = () => {
     loadList(event.target.value);
   };
 
-  const updateLoads = (id) => {
-    axios
-      // Säädetty
-      .put("http://localhost:3008/api/update/", {
-        sender: sender,
-        recipient: recipient,
-        product: product,
-        vehicle: vehicle,
-        number: number,
-        mass: mass,
-        id: id,
-      })
-      .then((response) => {
-        alert("update");
-      });
-  };
-
-  // const handleEditClick = (event, val) => {
-  //   event.preventDeafult();
-  //   SetUpdateId(val.id);
-  // };
-
   const deleteLoad = (kuorma) => {
     axios.delete(`http://localhost:3008/api/delete/${kuorma}`);
   };
@@ -89,7 +67,7 @@ const Table = () => {
           <tbody className="table-body">
             {loadList.map((val) => {
               return (
-                <tr className="table-container" val={val}>
+                <tr className="table-container">
                   <td>{val.sender}</td>
 
                   <td>{val.recipient}</td>
@@ -109,25 +87,16 @@ const Table = () => {
                     >
                       Poista
                     </button>
-                    <button
-                      onClick={(event) => {
-                        updateLoads(val.id);
-                      }}
-                    >
-                      Muokkaus
-                    </button>
-                    {/* <button onClick={updateLoads}>Muokkaa</button> */}
                   </td>
                 </tr>
               );
             })}
-            {/* </div> */}
           </tbody>
-          <tfoot>
-            <div
-              className="adding_load"
-              class="table-light container-fluid px-0"
-            >
+          <tfoot
+            className="adding_load"
+            class="table-light container-fluid px-0"
+          >
+            <div>
               <form className="inputs">
                 <input
                   className="field1"
