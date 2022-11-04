@@ -5,12 +5,17 @@ const cors = require("cors");
 const mysql = require("mysql");
 // Set database paramets
 const db = mysql.createPool({
-  host: "127.0.0.1",
-  port: "3306",
-  user: "root",
-  password: "password",
-  database: "keskimaki",
+  host: "eu-cdbr-west-03.cleardb.net",
+  // port: "3306",
+  user: "bebd231645def4",
+  password: "9b260785",
+  database: "heroku_855c75dcea4f2cf",
 });
+
+const PORT = 3008;
+
+//bebd231645def4:9b260785@eu-cdbr-west-03.cleardb.net/heroku_855c75dcea4f2cf?reconnect=true
+// mysql:
 
 app.use(cors());
 app.use(express.json());
@@ -75,9 +80,13 @@ app.delete("/api/delete/:id", (req, res) => {
   });
 });
 
-app.listen(3008, () => {
-  console.log("running on port 3008");
+app.listen(process.env.PORT || PORT, () => {
+  console.log(`Server running at port ${PORT}`);
 });
+
+// app.listen(3008, () => {
+//   console.log("running on port 3008");
+// });
 
 // npm init
 //  npm run dev käynnistää console.login
