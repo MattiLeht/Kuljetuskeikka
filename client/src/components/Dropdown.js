@@ -1,6 +1,5 @@
 import '../style.css';
 import { ReactComponent as ArrowIcon } from '../icons/email.svg';
-import { ReactComponent as Facebook } from '../icons/facebook.svg';
 import { ReactComponent as Ig } from '../icons/ig.svg';
 import { ReactComponent as Linkedin } from '../icons/linkedin.svg';
 import { ReactComponent as Wap } from '../icons/wap.svg';
@@ -19,10 +18,10 @@ function DropdownMenu() {
     setMenuHeight(dropdownRef.current.firstChild.offsetHeight)
   }, [])
 
-//   function calcHeight(el) {
-//     const height = el.offsetHeight;
-//     setMenuHeight(height);
-//   }
+  function calcHeight(el) {
+    const height = el.offsetHeight;
+    setMenuHeight(height);
+  }
 
   function DropdownItem(props) {
     return (
@@ -48,7 +47,7 @@ function DropdownMenu() {
           <DropdownItem
            leftIcon={<ArrowIcon />}
             goToMenu="settings">
-            Social Media
+            Linkit
           </DropdownItem>
           <DropdownItem
             leftIcon={<ArrowIcon />}
@@ -66,9 +65,9 @@ function DropdownMenu() {
         onEnter={calcHeight}>
         <div className="menu">
           <DropdownItem goToMenu="main" leftIcon={<ArrowIcon />}>
-            <h3>Social Media</h3>
+            <h3>Linkit</h3>
           </DropdownItem>
-          <DropdownItem leftIcon={<Facebook/>}>Facebook</DropdownItem>
+          <DropdownItem ><a href='http://www.navisystem.fi'>Navsystem</a></DropdownItem>
           <DropdownItem leftIcon={<Ig />}>Instagram</DropdownItem>
           <DropdownItem leftIcon={<Linkedin/>}>Linkedin</DropdownItem>
           <DropdownItem leftIcon={<Wap />}>Whatsapp</DropdownItem>

@@ -16,14 +16,14 @@ const Table = () => {
   const [loadList, setLoadList] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3008/api/get/").then((response) => {
+    axios.get("https://kuljetuskeikkaohjelma.herokuapp.com/api/get/").then((response) => {
       setLoadList(response.data);
     });
   }, []);
 
   const submitLoads = () => {
     axios
-      .post("http://localhost:3008/api/insert/", {
+      .post("https://kuljetuskeikkaohjelma.herokuapp.com/api/insert/", {
         sender: sender,
         recipient: recipient,
         product: product,
@@ -43,7 +43,7 @@ const Table = () => {
   };
 
   const deleteLoad = (id) => {
-    axios.delete(`http://localhost:3008/api/delete/${id}`);
+    axios.delete(`https://kuljetuskeikkaohjelma.herokuapp.com/api/delete/${id}`);
   };
 
   return (
@@ -55,13 +55,13 @@ const Table = () => {
         >
           <thead className="table-header">
             <tr>
-              <th scope="col">Lahettaja</th>
+              <th scope="col">Lähettäjä</th>
               <th scope="col">Vastaanottaja</th>
               <th scope="col">Tuote</th>
               <th scope="col">Auto</th>
               <th scope="col">Nro</th>
               <th scope="col">kg/m3</th>
-              <th scope="col">Edit</th>
+              <th scope="col">Poista</th>
             </tr>
           </thead>
           <tbody className="table-body">
@@ -70,7 +70,7 @@ const Table = () => {
                 <tr className="table-container">
                   <td>{val.sender}</td>
 
-                  <td>{val.recipient}</td>
+                  <td>{val.recipient} </td>
 
                   <td>{val.product}</td>
 
@@ -79,78 +79,108 @@ const Table = () => {
                   <td>{val.number}</td>
 
                   <td>{val.mass}</td>
+
                   <td>
                     <button
                       onClick={() => {
                         deleteLoad(val.id);
                       }}
+                      class="learn-more"
                     >
-                      Poista
+                      <span class="circle" aria-hidden="true">
+                        <span class="icon arrow"></span>
+                      </span>
+                      <span class="button-text">Poista</span>
                     </button>
                   </td>
                 </tr>
               );
             })}
+            <div
+              className="table-container"
+              class="table-light container-fluid px-0"
+            >
+              <form className="inputs">
+                <tr className="inputfield">
+                  <td>
+                    <input
+                      className="field1"
+                      type="text"
+                      name="sender"
+                      required="required"
+                      placeholder="Lähettäjä"
+                      onChange={(e) => {
+                        setSender(e.target.value);
+                      }}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      className="field2"
+                      type="text"
+                      name="recipient"
+                      required="required"
+                      placeholder="Vastaanottaja"
+                      onChange={(e) => {
+                        setRecipient(e.target.value);
+                      }}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      name="product"
+                      placeholder="Tuote"
+                      onChange={(e) => {
+                        setProduct(e.target.value);
+                      }}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      name="vehicle"
+                      placeholder="Auto"
+                      onChange={(e) => {
+                        setVehicle(e.target.value);
+                      }}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      name="number"
+                      placeholder="Numero"
+                      onChange={(e) => {
+                        setNumber(e.target.value);
+                      }}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      name="mass"
+                      placeholder="kg/m3"
+                      onChange={(e) => {
+                        setMass(e.target.value);
+                      }}
+                    />
+                  </td>
+                  <td>
+                    <button onClick={submitLoads} class="cta">
+                      <span>Lisää</span>
+                      <svg viewBox="0 0 13 10" height="10px" width="15px">
+                        <path d="M1,5 L11,5"></path>
+                        <polyline points="8 1 12 5 8 9"></polyline>
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+              </form>
+            </div>
           </tbody>
         </table>
       </form>
-      <div className="adding_load" class="table-light container-fluid px-0">
-        <form className="inputs">
-          <input
-            className="field1"
-            type="text"
-            name="sender"
-            required="required"
-            placeholder="Lahettaja"
-            onChange={(e) => {
-              setSender(e.target.value);
-            }}
-          />
-          <input
-            className="field2"
-            type="text"
-            name="recipient"
-            required="required"
-            placeholder="Vastaanottaja"
-            onChange={(e) => {
-              setRecipient(e.target.value);
-            }}
-          />
-          <input
-            type="text"
-            name="product"
-            placeholder="Tuote"
-            onChange={(e) => {
-              setProduct(e.target.value);
-            }}
-          />
-          <input
-            type="text"
-            name="vehicle"
-            placeholder="Auto"
-            onChange={(e) => {
-              setVehicle(e.target.value);
-            }}
-          />
-          <input
-            type="text"
-            name="number"
-            placeholder="Numero"
-            onChange={(e) => {
-              setNumber(e.target.value);
-            }}
-          />
-          <input
-            type="text"
-            name="mass"
-            placeholder="kg/m3"
-            onChange={(e) => {
-              setMass(e.target.value);
-            }}
-          />
-          <button onClick={submitLoads}>Lisää</button>
-        </form>
-      </div>
     </div>
   );
 };
