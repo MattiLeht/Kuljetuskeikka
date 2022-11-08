@@ -41,7 +41,6 @@ const Table = () => {
         >
           <thead className="table-header">
             <tr>
-              <th scope="col">ID</th>
               <th scope="col">Lähettäjä</th>
               <th scope="col">Vastaanottaja</th>
               <th scope="col">Tuote</th>
