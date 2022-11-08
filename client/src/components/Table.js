@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 
 // import "./Table.css"
-// import TableJquery from "./TableJquery";
+import TableJquery from "./TableJquery";
 
 const Table = () => {
  
@@ -69,11 +69,8 @@ const Table = () => {
                   <td>{val.mass}</td>
 
                   <td>
-                    <Link to="/TableEdit">
-                      <button>muokkaus</button>
-                    </Link>
-                    
-                    <Link to={`/TableEdit/${val.id}`}>
+                  
+                    <Link to="/TableEdit/">
                     <Button>Edit</Button>
                     </Link>
                     <Button
@@ -83,14 +80,9 @@ const Table = () => {
                       }}
                     >
                       Poista
-                    </Button>
-                    <Link to={`/view/${val.id}`}>
-                    <Button>Avaa</Button>
-                    </Link>
-                  
+                    </Button>                   
                   </td>
                 </tr>
-                
               );
             })}
           </tbody>

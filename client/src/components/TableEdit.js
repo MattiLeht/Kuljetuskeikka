@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../style.css";
 import axios from "axios";
+import {useNavigate , Link } from "react-router-dom";
 import TableJquery from "./TableJquery";
 
 
@@ -11,6 +12,11 @@ function TableEdit() {
   const [vehicle, setVehicle] = useState("");
   const [number, setNumber] = useState("");
   const [mass, setMass] = useState("");
+
+
+
+const history = useNavigate();
+
 
   const [loadList, setLoadList] = useState([]);
 // Joonas! ÄLÄ VITTU POISTA MITÄÄN!
@@ -36,12 +42,15 @@ const updateLoads = (id) => {
     })
     .then((response) => {
       alert("update");
+      setTimeout(() => history("/Table"),300)
     });
+    
 };
+
 // Joonas! ÄLÄ VITTU POISTA MITÄÄN!
 return (
   <div>
-    <form>
+    
     {loadList.map((val) => {
   return (
     <tr className="edit-table">
@@ -107,21 +116,23 @@ return (
         />
       </td>
       <td>
-        {" "}
+      <Link to="/Table">
         <button
           onClick={() => {
           // Joonas! ÄLÄ VITTU POISTA MITÄÄN!
             updateLoads(val.id);
           }}
         >
+          
           Muokkaa
         </button>
+        </Link>
       </td>
     </tr>
   );
 })};
 
-    </form>
+    
   </div>
 )}
 

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import "./Login.css";
-import Table from "./Table";
+import { Link } from "react-router-dom";
+
 
 function Login() {
   // React States
@@ -66,10 +67,12 @@ function Login() {
         <div className="input-container">
           <label>Password </label>
           <input type="password" name="pass" required />
+          
           {renderErrorMessage("pass")}
         </div>
         <div className="button-container">
-          <input type="submit" />
+          <input type="submit" /><Link to="/Table" />
+          
         </div>
       </form>
     </div>
@@ -79,7 +82,6 @@ function Login() {
     <div className="app">
       <div className="login-form">
         <div className="title">Sign In</div>
-        {/* Tänne on lisätty se taulukko */}
         {isSubmitted ? "Login" : renderForm}
       </div>
     </div>

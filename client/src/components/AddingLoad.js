@@ -2,7 +2,7 @@ import React, { useState, useEffect} from "react";
 import "../style.css";
 import axios from "axios";
 import { useNavigate , useParams, Link } from "react-router-dom";
-// import TableJquery from "./TableJquery";
+import TableJquery from "./TableJquery";
 
 const initialState = {
   sender: "",

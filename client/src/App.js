@@ -18,7 +18,7 @@ import Error from "./pages/Error";
 
 function App() {
   return (
-    <div class="bg_image">
+    <div className="bg_image">
       <div className="main-div">
         <Navbar>
           

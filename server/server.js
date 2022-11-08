@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const cors = require("cors");
 const mysql = require("mysql");
-require("dotenv").config();
+
 
 // Set database paramets
 const db = mysql.createPool({
