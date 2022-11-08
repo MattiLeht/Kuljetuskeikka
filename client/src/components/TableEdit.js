@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../style.css";
 import axios from "axios";
-import { useNavigate , useParams, Link } from "react-router-dom";
 import TableJquery from "./TableJquery";
 
 
@@ -15,13 +14,11 @@ function TableEdit() {
 
   const [loadList, setLoadList] = useState([]);
 // Joonas! ÄLÄ VITTU POISTA MITÄÄN!
-
-
   useEffect(() => {
     axios
       .get("https://kuljetuskeikka.herokuapp.com/api/get/")
       .then((response) => {
-        setLoadList({...response.data[0] });
+        setLoadList(response.data);
       });
   }, []);
 // Joonas! ÄLÄ VITTU POISTA MITÄÄN!

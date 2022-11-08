@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-//import Login from "./components/LogIn";
+import Login from "./components/LogIn";
 
 
 import Navbar from "./components/Navbar";
@@ -27,12 +27,12 @@ function App() {
           </NavItem> */}
           
         </Navbar>
-        {/* <Login /> */}
+      
         <Router>
           <Link to="/Table"> <button>Taulukko</button> </Link>
           <Link to="/AddingLoad"> <button>Lisää kuorma</button> </Link>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/about" element={<About />} />
             <Route path="/Table" element={<Table />} />
