@@ -1,60 +1,47 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import "../style.css";
 import axios from "axios";
-// import { useState } from 'react'
+import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
+
 // import "./Table.css"
-import TableJquery from "./TableJquery";
+// import TableJquery from "./TableJquery";
 
 const Table = () => {
-  const [sender, setSender] = useState("");
-  const [recipient, setRecipient] = useState("");
-  const [product, setProduct] = useState("");
-  const [vehicle, setVehicle] = useState("");
-  const [number, setNumber] = useState("");
-  const [mass, setMass] = useState("");
+ 
 
   const [loadList, setLoadList] = useState([]);
 
+  const loads = async () => {
+    const response = await axios.get("https://kuljetuskeikka.herokuapp.com/api/get/");
+    setLoadList(response.data);
+  };
+
   useEffect(() => {
-    axios.get("https://kuljetuskeikkaohjelma.herokuapp.com/api/get/").then((response) => {
-      setLoadList(response.data);
-    });
-  }, []);
+      loads();
+  },[]);
 
-  const submitLoads = () => {
-    axios
-      .post("https://kuljetuskeikkaohjelma.herokuapp.com/api/insert/", {
-        sender: sender,
-        recipient: recipient,
-        product: product,
-        vehicle: vehicle,
-        number: number,
-        mass: mass,
-      })
-      .then(() => {
-        alert("successful insert");
-      });
-  };
-
-  const [updateLoadId, SetUpdateId] = useState(null);
-
-  const handleChange = (event) => {
-    loadList(event.target.value);
-  };
 
   const deleteLoad = (id) => {
-    axios.delete(`https://kuljetuskeikkaohjelma.herokuapp.com/api/delete/${id}`);
+    // Varmistetaan haluaako käyttäjä poistaa kuorman
+    if(
+      window.confirm("Haluatko varmasti poistaa kuorman?")
+      ) {
+    axios.delete(`https://kuljetuskeikka.herokuapp.com/api/delete/${id}`);
+        setTimeout(() => loads(), 400);
+      }
   };
 
   return (
     <div class="container-fluid">
       <form className="table-div">
         <table
-          id="tableOne"
-          class="table table-light table-bordered table-striped table-responsive-stack"
+          
+          class="table table-hover table-light table-bordered table-striped table-responsive-stack"
         >
           <thead className="table-header">
             <tr>
+              <th scope="col">ID</th>
               <th scope="col">Lähettäjä</th>
               <th scope="col">Vastaanottaja</th>
               <th scope="col">Tuote</th>
@@ -67,8 +54,9 @@ const Table = () => {
           <tbody className="table-body">
             {loadList.map((val) => {
               return (
-                <tr className="table-container">
-                  <td>{val.sender}</td>
+                <tr key={val.id} className="table-container">
+                 
+                  <td> {val.sender}</td>
 
                   <td>{val.recipient} </td>
 
@@ -81,106 +69,34 @@ const Table = () => {
                   <td>{val.mass}</td>
 
                   <td>
-                    <button
+                    <Link to="/TableEdit">
+                      <button>muokkaus</button>
+                    </Link>
+                    
+                    <Link to={`/TableEdit/${val.id}`}>
+                    <Button>Edit</Button>
+                    </Link>
+                    <Button
+                      type="button" class="btn btn-secondary btn-lg"
                       onClick={() => {
                         deleteLoad(val.id);
                       }}
-                      class="learn-more"
                     >
-                      <span class="circle" aria-hidden="true">
-                        <span class="icon arrow"></span>
-                      </span>
-                      <span class="button-text">Poista</span>
-                    </button>
+                      Poista
+                    </Button>
+                    <Link to={`/view/${val.id}`}>
+                    <Button>Avaa</Button>
+                    </Link>
+                  
                   </td>
                 </tr>
+                
               );
             })}
-            <div
-              className="table-container"
-              class="table-light container-fluid px-0"
-            >
-              <form className="inputs">
-                <tr className="inputfield">
-                  <td>
-                    <input
-                      className="field1"
-                      type="text"
-                      name="sender"
-                      required="required"
-                      placeholder="Lähettäjä"
-                      onChange={(e) => {
-                        setSender(e.target.value);
-                      }}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      className="field2"
-                      type="text"
-                      name="recipient"
-                      required="required"
-                      placeholder="Vastaanottaja"
-                      onChange={(e) => {
-                        setRecipient(e.target.value);
-                      }}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="text"
-                      name="product"
-                      placeholder="Tuote"
-                      onChange={(e) => {
-                        setProduct(e.target.value);
-                      }}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="text"
-                      name="vehicle"
-                      placeholder="Auto"
-                      onChange={(e) => {
-                        setVehicle(e.target.value);
-                      }}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="text"
-                      name="number"
-                      placeholder="Numero"
-                      onChange={(e) => {
-                        setNumber(e.target.value);
-                      }}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="text"
-                      name="mass"
-                      placeholder="kg/m3"
-                      onChange={(e) => {
-                        setMass(e.target.value);
-                      }}
-                    />
-                  </td>
-                  <td>
-                    <button onClick={submitLoads} class="cta">
-                      <span>Lisää</span>
-                      <svg viewBox="0 0 13 10" height="10px" width="15px">
-                        <path d="M1,5 L11,5"></path>
-                        <polyline points="8 1 12 5 8 9"></polyline>
-                      </svg>
-                    </button>
-                  </td>
-                </tr>
-              </form>
-            </div>
           </tbody>
         </table>
       </form>
+  
     </div>
   );
 };
