@@ -10,15 +10,15 @@ import TableJquery from "./TableJquery";
 const Table = () => {
  
 
-  const [loadList, setLoadList] = useState([]);
+  const [data, setData] = useState([]);
 
-  const loads = async () => {
+  const loadData = async () => {
     const response = await axios.get("https://kuljetuskeikka.herokuapp.com/api/get/");
-    setLoadList(response.data);
+    setData(response.data);
   };
 
   useEffect(() => {
-      loads();
+      loadData();
   },[]);
 
 
@@ -28,33 +28,38 @@ const Table = () => {
       window.confirm("Haluatko varmasti poistaa kuorman?")
       ) {
     axios.delete(`https://kuljetuskeikka.herokuapp.com/api/delete/${id}`);
-        setTimeout(() => loads(), 400);
+        setTimeout(() => loadData(), 400);
       }
   };
 
   return (
     <div class="container-fluid">
-      <form className="table-div">
+      {/* <form className="table-div"> */}
+        
         <table
           
           class="table table-hover table-light table-bordered table-striped table-responsive-stack"
         >
+           
           <thead className="table-header">
             <tr>
               <th scope="col">Lähettäjä</th>
               <th scope="col">Vastaanottaja</th>
               <th scope="col">Tuote</th>
               <th scope="col">Auto</th>
-              <th scope="col">Nro</th>
               <th scope="col">kg/m3</th>
+              <th scope="col">Pvm</th>
+              <th scope="col">Tilanne</th>
               <th scope="col">Poista</th>
             </tr>
           </thead>
           <tbody className="table-body">
-            {loadList.map((val) => {
+            {data.map((val) => {
               return (
                 <tr key={val.id} className="table-container">
-                 
+                  
+                
+
                   <td> {val.sender}</td>
 
                   <td>{val.recipient} </td>
@@ -66,10 +71,12 @@ const Table = () => {
                   <td>{val.number}</td>
 
                   <td>{val.mass}</td>
-
-                  <td>
                   
-                    <Link to="/TableEdit/">
+                  <td>{val.status}</td>
+
+                  <td className="edit_td">
+                  
+                  <Link to="/TableEdit/">
                     <Button>Edit</Button>
                     </Link>
                     <Button
@@ -79,14 +86,14 @@ const Table = () => {
                       }}
                     >
                       Poista
-                    </Button>                   
+                    </Button>                 
                   </td>
                 </tr>
               );
             })}
           </tbody>
         </table>
-      </form>
+      {/* </form> */}
   
     </div>
   );

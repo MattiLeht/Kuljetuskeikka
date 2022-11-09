@@ -1,7 +1,7 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "../style.css";
 import axios from "axios";
-import { useNavigate , useParams, Link } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import TableJquery from "./TableJquery";
 
 const initialState = {
@@ -11,82 +11,64 @@ const initialState = {
   vehicle: "",
   number: "",
   mass: "",
+  status: "",
 };
 
 const AddingLoad = () => {
-
   const [state, setState] = useState(initialState);
 
-  const { sender, recipient, product, vehicle, number, mass } = state;
+  const { sender, recipient, product, vehicle, number, mass, status } = state;
 
   const history = useNavigate();
-  // Haetaan muokattavan rivin id
-  const {id} = useParams();
 
+  const { id } = useParams();
 
-
-  useEffect (() => {
-    axios.get(`https://kuljetuskeikka.herokuapp.com/api/get/${id}`)
-    .then((resp) => setState({...resp.data[0] }));
-  }, [id])
+  useEffect(() => {
+    axios
+      .get(`https://kuljetuskeikka.herokuapp.com/api/get/${id}`)
+      .then((resp) => setState({ ...resp.data[0] }));
+  }, [id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(!id){
-      axios.post("https://kuljetuskeikka.herokuapp.com/api/insert/", {
-        sender,
-        recipient,
-        product,
-        vehicle,
-        number,
-        mass,
-      })
-      .then(() => {
-        setState({
-          sender: "",
-        recipient: "",
-        product: "",
-        vehicle: "",
-        number: "",
-        mass: "",
-      })
-      })
-    }else {
-      axios.put(`https://kuljetuskeikka.herokuapp.com/api/update/${id}`, {
-        sender,
-        recipient,
-        product,
-        vehicle,
-        number,
-        mass,
-      })
-      .then(() => {
-        setState({
-          sender: "",
-        recipient: "",
-        product: "",
-        vehicle: "",
-        number: "",
-        mass: "",
-      })
-      })
+    if (!sender || !recipient) {
+      alert("Syötä lähettäjä ja vastaanottaja!");
+    } else {
+      axios
+        .post("https://kuljetuskeikka.herokuapp.com/api/insert/", {
+          sender,
+          recipient,
+          product,
+          vehicle,
+          number,
+          mass,
+          status,
+        })
+        .then(() => {
+          setState({
+            sender: "",
+            recipient: "",
+            product: "",
+            vehicle: "",
+            number: "",
+            mass: "",
+            status: "",
+          });
+        })
+
+        .catch((err) => alert(err.response.data));
     }
-   
-    
-      setTimeout(() => history("/Table"),300)
-    };
-   
-    
+    setTimeout(() => history("/Table"), 300);
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setState({...state, [name]: value });
+    setState({ ...state, [name]: value });
   };
 
   return (
     <div className="adding_load" class="table-light container-fluid px-0">
-      <form  onSubmit={handleSubmit}>
-      
+      <form onSubmit={handleSubmit}>
         <input
           className="field1"
           type="text"
@@ -137,9 +119,17 @@ const AddingLoad = () => {
           value={mass || ""}
           onChange={handleInputChange}
         />
+        <input
+          type="text"
+          name="status"
+          id="status"
+          placeholder="Tilanne"
+          value={status || ""}
+          onChange={handleInputChange}
+        />
         <input type="submit" value={id ? "Muokkaa" : "Tallenna"} />
         <Link to="/Table">
-        <input type="button" value="Takaisin" />
+          <input type="button" value="Takaisin" />
         </Link>
       </form>
     </div>

@@ -5,7 +5,13 @@
   display: flex;
   justify-content: center;
 } */
-
+.errordiv{
+  display: flex;
+  justify-content: center;
+  font-size: larger;
+  font-weight: 800;
+  color: #1d3557;
+}
 table {
   margin: 0;
 
@@ -134,6 +140,15 @@ th:last-child,td:last-child{
 
 .table-responsive-stack .table-responsive-stack-thead {
   font-weight: bold;
+}
+.movingbuttons {
+  display: flex;
+  justify-content: center;
+}
+.btn-primary{
+  display: flex;
+  justify-content: space-between;
+  margin-right: 20px ;
 }
 .bg_image {
   background-image: url("components/galleria-slide-1.jpg");

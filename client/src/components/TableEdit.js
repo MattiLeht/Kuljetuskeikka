@@ -1,25 +1,22 @@
 import React, { useState, useEffect } from "react";
 import "../style.css";
 import axios from "axios";
-import {useNavigate , Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import TableJquery from "./TableJquery";
 
-
 function TableEdit() {
+  // Define the variables where the given information is placed
   const [sender, setSender] = useState("");
   const [recipient, setRecipient] = useState("");
   const [product, setProduct] = useState("");
   const [vehicle, setVehicle] = useState("");
   const [number, setNumber] = useState("");
   const [mass, setMass] = useState("");
-
-
-
-const history = useNavigate();
-
+  
+  const history = useNavigate();
 
   const [loadList, setLoadList] = useState([]);
-// Joonas! ÄLÄ VITTU POISTA MITÄÄN!
+  // Getting data in database  
   useEffect(() => {
     axios
       .get("https://kuljetuskeikka.herokuapp.com/api/get/")
@@ -27,35 +24,34 @@ const history = useNavigate();
         setLoadList(response.data);
       });
   }, []);
-// Joonas! ÄLÄ VITTU POISTA MITÄÄN!
-const updateLoads = (id) => {
-  axios
-    // Säädetty
-    .put("https://kuljetuskeikka.herokuapp.com/api/update/", {
-      sender: sender,
+  // Update data
+  const updateLoads = (id) => {
+    axios
+      
+      .put("https://kuljetuskeikka.herokuapp.com/api/update/", {
+        sender: sender,
       recipient: recipient,
       product: product,
       vehicle: vehicle,
       number: number,
       mass: mass,
       id: id,
-    })
-    .then((response) => {
-      alert("update");
-      setTimeout(() => history("/Table"),300)
-    });
-    
-};
-
-// Joonas! ÄLÄ VITTU POISTA MITÄÄN!
-return (
-  <div>
-    
-    {loadList.map((val) => {
+      
+      })
+      .then((response) => {
+        alert("update");
+        // Renturn back to table
+        setTimeout(() => history("/Table"), 300);
+      });
+  };
+  // Adding information
   return (
-    <tr className="edit-table">
-      <th></th>
-      <td>
+    <div class="container-fluid">
+      <table class="table table-hover table-light table-bordered table-striped table-responsive-stack">
+        {loadList.map((val) => {
+          return (
+            <tr className="table-container">
+              <td>
         <input
           type="text"
           placeholder="Lähettajä"
@@ -115,50 +111,27 @@ return (
           }}
         />
       </td>
-      <td>
-      <Link to="/Table">
-        <button
-          onClick={() => {
-          // Joonas! ÄLÄ VITTU POISTA MITÄÄN!
-            updateLoads(val.id);
-          }}
-        >
-          
-          Muokkaa
-        </button>
-        </Link>
-      </td>
-    </tr>
+              
+              <td>
+                <Link to="/Table">
+                  <button
+                    onClick={() => {
+                    
+                      updateLoads(val.id);
+                    }}
+                  >
+                    Muokkaa
+                  </button>
+                </Link>
+              </td>
+            </tr>
+          );
+        })}
+        ;
+      </table>
+    </div>
   );
-})};
-
-    
-  </div>
-)}
-
-
+}
 
 export default TableEdit;
 
-
-  // const [sender, setSender] = useState("");
-  // const [recipient, setRecipient] = useState("");
-  // const [product, setProduct] = useState("");
-  // const [vehicle, setVehicle] = useState("");
-  // const [number, setNumber] = useState("");
-  // const [mass, setMass] = useState("");
-
-  // const [loadList, setLoadList] = useState([]);
-
-  // const submitLoads = () => {
-  //     axios
-  //       .post("https://kuljetuskeikka.herokuapp.com/api/insert/", {
-  //         sender: sender,
-  //         recipient: recipient,
-  //         product: product,
-  //         vehicle: vehicle,
-  //         number: number,
-  //         mass: mass,
-  //       })
-
-  //   };

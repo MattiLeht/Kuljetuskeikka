@@ -1,17 +1,20 @@
 import React from "react";
+import {Link, Router} from "react-router-dom";
 
 let today = new Date().toLocaleDateString()
 
 console.log(today)
 
-function Navbar(props) {
+function Navbar() {
   return (
     <nav className="navbar">
-      <ul className="navbar-nav">{props.children}</ul>
       <h1 className="navbar-header">Kuljetuskeikkaohjelma</h1>
+      <div>
+     
       
       
       {today}
+      </div>
     </nav>
   );
 }

@@ -23,20 +23,20 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // Get data in database
-// app.get("/api/get/", (req, res) => {
-//   const sqlGet = "SELECT * FROM loads";
-//   db.query(sqlGet, (err, result) => {
-//     res.send(result);
-//   });
-// });
+app.get("/api/get/", (req, res) => {
+  const sqlGet = "SELECT * FROM loads";
+  db.query(sqlGet, (err, result) => {
+    res.send(result);
+  });
+});
 
 // Add data to database
 app.post("/api/insert/", (req, res) => {
-  const {sender,recipient,product,vehicle,number,mass} = req.body;
-  const sqlInsert = "INSERT INTO loads (sender, recipient, product, vehicle, number, mass) VALUES (?,?,?,?,?,?)";
+  const {sender,recipient,product,vehicle,number,mass, status} = req.body;
+  const sqlInsert = "INSERT INTO loads (sender, recipient, product, vehicle, number, mass, status) VALUES (?,?,?,?,?,?,?)";
   db.query(
     sqlInsert,
-    [sender, recipient, product, vehicle, number, mass],
+    [sender, recipient, product, vehicle, number, mass, status],
     (error, result) => {
       if(error) {
         console.log(error);
@@ -48,10 +48,10 @@ app.post("/api/insert/", (req, res) => {
 
 
 
-// Delete row in table
+
 // Delete row in table
 app.delete("/api/delete/:id", (req, res) => {
-  const id = req.params.id;
+  const {id} = req.params.id;
   db.query("DELETE FROM loads WHERE id = ?", id, (err, result) => {
     if (err) {
       console.log(err);
@@ -73,9 +73,9 @@ app.get("/api/get/:id", (req, res) => {
 // Update database.
 app.put("/api/update/:id", (req, res) => {
   const {id} = req.params;
-  const {sender, recipient, product, vehicle, number, mass} = req.body;
-  const sqlUpdate = "UPDATE loads SET sender = ?, recipient = ?, product = ?, vehicle = ?, number = ?, mass = ? WHERE id = ? ";
-  db.query(sqlUpdate, [sender, recipient, product, vehicle, number, mass, id], (error, result) => {
+  const {vehicle} = req.body;
+  const sqlUpdate = "UPDATE loads SET vehicle = ? WHERE id = ? ";
+  db.query(sqlUpdate, [vehicle,id], (error, result) => {
     if(error){
       console.log(error)
     }
@@ -83,26 +83,6 @@ app.put("/api/update/:id", (req, res) => {
   });
 });
 
-// app.put("/api/update/:id", (req, result) => {
-//   const id = req.body.id;
-//   const sender = req.body.sender;
-//   const recipient = req.body.recipient;
-//   const product = req.body.product;
-//   const vehicle = req.body.vehicle;
-//   const number = req.body.number;
-//   const mass = req.body.mass;
-
-//   const sqlUpdate =
-//     "UPDATE loads SET sender = ?, recipient = ?, product = ?, vehicle = ?, number = ?, mass = ? WHERE id = ? ";
-//   if (req)
-//     db.query(
-//       sqlUpdate,
-//       [sender, recipient, product, vehicle, number, mass, id],
-//       (err, result) => {
-//         if (err) console.log(err);
-//       }
-//     );
-// });
 
 
 
