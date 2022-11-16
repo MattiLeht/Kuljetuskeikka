@@ -3,17 +3,15 @@ import "../style.css";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
-
-// import "./Table.css"
 import TableJquery from "./TableJquery";
 
 const Table = () => {
  
-
+  // Define the variables where the given information is placed
   const [data, setData] = useState([]);
-
+  // When user returns to the table, it is updated.
   const loadData = async () => {
-    const response = await axios.get("https://kuljetuskeikka.herokuapp.com/api/get/");
+    const response = await axios.get("http://kuljetuskeikka.herokuapp.com/api/get/");
     setData(response.data);
   };
 
@@ -23,11 +21,11 @@ const Table = () => {
 
 
   const deleteLoad = (id) => {
-    // Varmistetaan haluaako käyttäjä poistaa kuorman
+    // Verified does user remove data. 
     if(
       window.confirm("Haluatko varmasti poistaa kuorman?")
       ) {
-    axios.delete(`https://kuljetuskeikka.herokuapp.com/api/delete/${id}`);
+    axios.delete(`http://kuljetuskeikka.herokuapp.com/api/delete/${id}`);
         setTimeout(() => loadData(), 400);
       }
   };
@@ -49,17 +47,17 @@ const Table = () => {
               <th scope="col">Auto</th>
               <th scope="col">kg/m3</th>
               <th scope="col">Pvm</th>
-              <th scope="col">Tilanne</th>
+        
               <th scope="col">Poista</th>
             </tr>
           </thead>
           <tbody className="table-body">
+            {/* Use map function to getting data in sql */}
             {data.map((val) => {
               return (
                 <tr key={val.id} className="table-container">
                   
-                
-
+              
                   <td> {val.sender}</td>
 
                   <td>{val.recipient} </td>
@@ -72,11 +70,11 @@ const Table = () => {
 
                   <td>{val.mass}</td>
                   
-                  <td>{val.status}</td>
+                  
 
                   <td className="edit_td">
                   
-                  <Link to="/TableEdit/">
+                  <Link to={`/update/${val.id}`}>
                     <Button>Edit</Button>
                     </Link>
                     <Button

@@ -5,7 +5,7 @@ import Login from "./components/LogIn";
 import Button from "react-bootstrap/Button";
 import Navbar from "./components/Navbar";
 import Table from "./components/Table";
-import TableEdit from "./components/TableEdit";
+
 import AddingLoad from "./components/AddingLoad";
 import Footer from "./components/footer";
 import Error from "./pages/Error";
@@ -29,7 +29,7 @@ function App() {
             <Route exact path="/" element={<Login />} />
             <Route path="/Table" element={<Table />} />
             <Route path="/AddingLoad" element={<AddingLoad />} />
-            <Route path="/TableEdit" element={<TableEdit />} />
+            <Route path="/update/:id" element={<AddingLoad />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </Router>

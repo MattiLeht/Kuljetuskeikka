@@ -6,6 +6,14 @@ const mysql = require("mysql");
 
 
 // Set database paramets
+// const db = mysql.createPool({
+//   host: "localhost",
+//   port: 3307,
+//   user: "root",
+//   password: "password",
+//   database: "keskimaki",
+// });
+
 const db = mysql.createPool({
   host: "eu-cdbr-west-03.cleardb.net",
   // port: "3306",
@@ -14,7 +22,7 @@ const db = mysql.createPool({
   database: "heroku_855c75dcea4f2cf",
 });
 
-const PORT = 3008;
+const port = process.env.PORT || 3008;
 
 //bebd231645def4:9b260785@eu-cdbr-west-03.cleardb.net/heroku_855c75dcea4f2cf?reconnect=true
 // mysql:
@@ -32,11 +40,11 @@ app.get("/api/get/", (req, res) => {
 
 // Add data to database
 app.post("/api/insert/", (req, res) => {
-  const {sender,recipient,product,vehicle,number,mass, status} = req.body;
-  const sqlInsert = "INSERT INTO loads (sender, recipient, product, vehicle, number, mass, status) VALUES (?,?,?,?,?,?,?)";
+  const {sender,recipient,product,vehicle,number,mass} = req.body;
+  const sqlInsert = "INSERT INTO loads (sender, recipient, product, vehicle, number, mass) VALUES (?,?,?,?,?,?)";
   db.query(
     sqlInsert,
-    [sender, recipient, product, vehicle, number, mass, status],
+    [sender, recipient, product, vehicle, number, mass],
     (error, result) => {
       if(error) {
         console.log(error);
@@ -71,26 +79,27 @@ app.get("/api/get/:id", (req, res) => {
   });
 });
 // Update database.
-app.put("/api/update/:id", (req, res) => {
+
+app.put("/api/update/:id", (req,res) => {
   const {id} = req.params;
-  const {vehicle} = req.body;
-  const sqlUpdate = "UPDATE loads SET vehicle = ? WHERE id = ? ";
-  db.query(sqlUpdate, [vehicle,id], (error, result) => {
-    if(error){
-      console.log(error)
-    }
-    res.send(result);
-  });
-});
+  const {sender, recipient, product, vehicle, number, mass} = req.body;
+  const sqlUpdate = "UPDATE loads SET sender = ?, recipient = ?, product = ?, vehicle = ?, number = ?, mass = ? WHERE id = ?";
+  db.query(sqlUpdate, [sender, recipient, product, vehicle, number, mass,  id], (error, result) =>{
+      if(error){
+          console.log(error);
+      }
+      res.send(result);
+  })
+})
 
+app.listen(port, (err) => {
+  if (err) return console.log(err);
+  console.log("Server running on port", port);
+})
 
-
-
-
-
-app.listen(process.env.PORT || PORT, () => {
-  console.log(`Server running at port ${PORT}`);
-});
+// app.listen(process.env.PORT || PORT, () => {
+//   console.log(`Server running at port ${PORT}`);
+// });
 
 // app.listen(3008, () => {
 //   console.log("running on port 3008");
