@@ -4,7 +4,6 @@ const app = express();
 const cors = require("cors");
 const mysql = require("mysql");
 
-
 // Set database paramets
 
 const db = mysql.createPool({
@@ -33,26 +32,23 @@ app.get("/api/get/", (req, res) => {
 
 // Add data to database
 app.post("/api/insert/", (req, res) => {
-  const {sender,recipient,product,vehicle,number,mass} = req.body;
-  const sqlInsert = "INSERT INTO loads (sender, recipient, product, vehicle, number, mass) VALUES (?,?,?,?,?,?)";
+  const { sender, recipient, product, vehicle, number, mass } = req.body;
+  const sqlInsert =
+    "INSERT INTO loads (sender, recipient, product, vehicle, number, mass) VALUES (?,?,?,?,?,?)";
   db.query(
     sqlInsert,
     [sender, recipient, product, vehicle, number, mass],
     (error, result) => {
-      if(error) {
+      if (error) {
         console.log(error);
       }
-      
     }
   );
 });
 
-
-
-
 // Delete row in table
 app.delete("/api/delete/:id", (req, res) => {
-  const {id} = req.params.id;
+  const { id } = req.params.id;
   db.query("DELETE FROM loads WHERE id = ?", id, (err, result) => {
     if (err) {
       console.log(err);
@@ -62,10 +58,10 @@ app.delete("/api/delete/:id", (req, res) => {
 });
 
 app.get("/api/get/:id", (req, res) => {
-  const  {id}  = req.body;
+  const { id } = req.body;
   const sqlGet = "SELECT * FROM loads where id = ?";
   db.query(sqlGet, id, (error, result) => {
-    if(error){
+    if (error) {
       console.log(error);
     }
     res.send(result);
@@ -73,16 +69,21 @@ app.get("/api/get/:id", (req, res) => {
 });
 // Update database.
 
-app.put("/api/update/:id", (req,res) => {
-  const {id} = req.params;
-  const {sender, recipient, product, vehicle, number, mass} = req.body;
-  const sqlUpdate = "UPDATE loads SET sender = ?, recipient = ?, product = ?, vehicle = ?, number = ?, mass = ? WHERE id = ?";
-  db.query(sqlUpdate, [sender, recipient, product, vehicle, number, mass,  id], (error, result) =>{
-      if(error){
-          console.log(error);
+app.put("/api/update/:id", (req, res) => {
+  const { id } = req.params;
+  const { sender, recipient, product, vehicle, number, mass } = req.body;
+  const sqlUpdate =
+    "UPDATE loads SET sender = ?, recipient = ?, product = ?, vehicle = ?, number = ?, mass = ? WHERE id = ?";
+  db.query(
+    sqlUpdate,
+    [sender, recipient, product, vehicle, number, mass, id],
+    (error, result) => {
+      if (error) {
+        console.log(error);
       }
       res.send(result);
-  });
+    }
+  );
 });
 
 // app.listen(port, (err) => {
