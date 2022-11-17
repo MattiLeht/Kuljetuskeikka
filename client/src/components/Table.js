@@ -45,10 +45,10 @@ const Table = () => {
               <th scope="col">Vastaanottaja</th>
               <th scope="col">Tuote</th>
               <th scope="col">Auto</th>
-              <th scope="col">kg/m3</th>
               <th scope="col">Pvm</th>
+              <th scope="col">Tilanne</th>
         
-              <th scope="col">Poista</th>
+              <th scope="col">Muokkaus</th>
             </tr>
           </thead>
           <tbody className="table-body">

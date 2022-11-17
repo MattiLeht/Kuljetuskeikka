@@ -6,13 +6,6 @@ const mysql = require("mysql");
 
 
 // Set database paramets
-// const db = mysql.createPool({
-//   host: "localhost",
-//   port: 3307,
-//   user: "root",
-//   password: "password",
-//   database: "keskimaki",
-// });
 
 const db = mysql.createPool({
   host: "eu-cdbr-west-03.cleardb.net",
@@ -22,7 +15,7 @@ const db = mysql.createPool({
   database: "heroku_855c75dcea4f2cf",
 });
 
-const port = process.env.PORT || 3008;
+const PORT = 3008;
 
 //bebd231645def4:9b260785@eu-cdbr-west-03.cleardb.net/heroku_855c75dcea4f2cf?reconnect=true
 // mysql:
@@ -69,8 +62,8 @@ app.delete("/api/delete/:id", (req, res) => {
 });
 
 app.get("/api/get/:id", (req, res) => {
-  const  {id}  = req.params;
-  const sqlGet = "SELECT * FROM loads WHERE id = ?";
+  const  {id}  = req.body;
+  const sqlGet = "SELECT * FROM loads where id = ?";
   db.query(sqlGet, id, (error, result) => {
     if(error){
       console.log(error);
@@ -89,17 +82,17 @@ app.put("/api/update/:id", (req,res) => {
           console.log(error);
       }
       res.send(result);
-  })
-})
+  });
+});
 
-app.listen(port, (err) => {
-  if (err) return console.log(err);
-  console.log("Server running on port", port);
-})
+// app.listen(port, (err) => {
+//   if (err) return console.log(err);
+//   console.log("Server running on port", port);
+// })
 
-// app.listen(process.env.PORT || PORT, () => {
-//   console.log(`Server running at port ${PORT}`);
-// });
+app.listen(process.env.PORT || PORT, () => {
+  console.log(`Server running at port ${PORT}`);
+});
 
 // app.listen(3008, () => {
 //   console.log("running on port 3008");
