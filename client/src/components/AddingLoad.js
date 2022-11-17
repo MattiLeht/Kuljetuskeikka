@@ -139,15 +139,16 @@ const AddingLoad = () => {
           value={mass || ""}
           onChange={handleInputChange}
         />
-
-        <input
-          className="savebutton"
-          type="submit"
-          value={id ? "Muokkaa" : "Tallenna"}
-        />
-        <Link to="/Table">
-          <input type="button" value="Takaisin" />
-        </Link>
+        <td>
+          <input
+            className="savebutton"
+            type="submit"
+            value={id ? "Muokkaa" : "Tallenna"}
+          />
+          <Link to="/Table">
+            <input type="button" value="Takaisin" />
+          </Link>
+        </td>
       </form>
     </div>
   );
